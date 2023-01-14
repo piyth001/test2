@@ -567,23 +567,43 @@ if KEY then
                     Island = CFrameMon
                 elseif level == 725 or level <= 774 then
                     Island = CFrameMon
-                elseif level == 725 or level <= 774 then
+                elseif level == 775 or level <= 799 then
                     Island = CFrameMon
-                elseif level == 725 or level <= 774 then
+                elseif level == 800 or level <= 874 then
                     Island = CFrameMon
-                elseif level == 725 or level <= 774 then
+                elseif level == 875 or level <= 899 then
                     Island = CFrameMon
-                elseif level == 725 or level <= 774 then
+                elseif level == 900 or level <= 949 then
                     Island = CFrameMon
-                elseif level == 725 or level <= 774 then
+                elseif level == 950 or level <= 999 then
                     Island = CFrameMon
-                elseif level == 725 or level <= 774 then
+                elseif level == 1000 or level <= 1049 then
                     Island = CFrameMon
-                elseif level == 725 or level <= 774 then
+                elseif level == 1050 or level <= 1099 then
                     Island = CFrameMon
-                elseif level == 725 or level <= 774 then
+                elseif level == 1100 or level <= 1124 then
                     Island = CFrameMon
-                elseif level == 725 or level <= 774 then
+                elseif level == 1125 or level <= 1174 then
+                    Island = CFrameMon
+                elseif level == 1175 or level <= 1199 then
+                    Island = CFrameMon
+                elseif level == 1200 or level <= 1249 then
+                    Island = CFrameMon
+                elseif level == 1250 or level <= 1274 then
+                    Island = CFrameMon
+                elseif level == 1275 or level <= 1299 then
+                    Island = CFrameMon
+                elseif level == 1300 or level <= 1324 then
+                    Island = CFrameMon
+                elseif level == 1325 or level <= 1349 then
+                    Island = CFrameMon
+                elseif level == 1350 or level <= 1374 then
+                    Island = CFrameMon
+                elseif level == 1375 or level <= 1424 then
+                    Island = CFrameMon
+                elseif level == 1425 or level <= 1449 then
+                    Island = CFrameMon
+                elseif level >= 1450 then
                     Island = CFrameMon
                 end
             end
