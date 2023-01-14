@@ -110,7 +110,43 @@ if KEY then
         local Tab = Window:NewTab("Settings")
         local Section = Tab:NewSection("Main")
     
-    
+        Section:NewButton("Redeem Code", "", function()
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("GAMER_ROBOT_1M")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("GAMERROBOT_YT")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("kittgaming")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("Sub2Fer999")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("Enyu_is_Pro")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("Magicbus")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("JCWK")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("Starcodeheo")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("Bluxxy")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("BIGNEWS")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("THEGREATACE")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("SUB2GAMERROBOT_EXP1")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("Sub2OfficialNoobie")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("StrawHatMaine")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("SUB2NOOBMASTER123")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("Sub2Daigrock")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("Axiore")
+            wait(0.5)
+            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer("TantaiGaming")
+        end)
     
         Section:NewKeybind("Toggle Ui", "", Enum.KeyCode.RightControl, function()
             Library:ToggleUI()
@@ -841,7 +877,7 @@ if KEY then
     local Test = game:GetService("Players").LocalPlayer.SunHub
     Test.Value += 1
     
-    if game:GetService("Players").LocalPlayer.SunHub.Value >= 4 then
+    if game:GetService("Players").LocalPlayer.SunHub.Value >= 6 then
         game.Players.LocalPlayer:Kick("YOU RUN SCRIPT READY!!")
     end
     
