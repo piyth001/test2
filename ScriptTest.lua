@@ -26,8 +26,11 @@ if KEY then
     
         Section:NewToggle("AutoFarm", "", function(a)
             AutoFarm["Farmlevel"] = a
+        end)
+        Section:NewToggle("FastAttack", "", function(a)
             AutoFarm["FastAttack"] = a
         end)
+        
     
         local Tab = Window:NewTab("Auto Item")
         local Section = Tab:NewSection("Section Name")
@@ -274,7 +277,7 @@ if KEY then
                     LevelQuest = 2
                     NameMon = "Shandas"
                     CFrameQuest = CFrame.new(-7859.09814, 5544.19043, -381.476196, -0.422592998, 0, 0.906319618, 0, 1, 0, -0.906319618, 0, -0.422592998)
-                    CFrameMon = CFrame.new(-7904.57373, 5584.37646, -459.62973, 0.65171206, 5.11171692e-08, 0.758466363, -4.76232476e-09, 1, -6.33034247e-08, -0.758466363, 3.76435416e-08, 0.65171206)
+                    CFrameMon = CFrame.new(-7669.20068359375, 5545.49169921875, -517.9949340820312)
                 elseif MyLevel == 525 or MyLevel <= 549 then -- Royal Squad
                     Ms = "Royal Squad [Lv. 525]"
                     NameQuest = "SkyExp2Quest"
@@ -468,58 +471,85 @@ if KEY then
         -- function Check tp Change Island
         function island()
             local level = game:GetService("Players").LocalPlayer.Data.Level.Value
-            if level == 10 or level <= 14 then
-                Island = CFrameMon
-            elseif level == 15 or level <= 29 then
-                Island = CFrameMon
-            elseif level == 30 or level <= 39 then
-                Island = CFrameMon
-            elseif level == 40 or level <= 59 then
-                Island = CFrameMon
-            elseif level == 60 or level <= 74 then
-                Island = CFrameMon
-            elseif level == 75 or level <= 89 then
-                Island = CFrameMon
-            elseif level == 89 or level <= 99 then
-                Island = CFrameMon
-            elseif level == 100 or level <= 119 then
-                Island = CFrameMon
-            elseif level == 120 or level <= 149 then
-                Island = CFrameMon
-            elseif level == 150 or level <= 174 then
-                Island = CFrameMon
-            elseif level == 175 or level <= 189 then
-                Island = CFrameMon
-            elseif level == 190 or level <= 209 then
-                Island = CFrameMon
-            elseif level == 210 or level <= 249 then
-                Island = CFrameMon
-            elseif level == 250 or level <= 274 then
-                Island = CFrameMon
-            elseif level == 275 or level <= 299 then
-                Island = CFrameMon
-            elseif level == 300 or level <= 329 then
-                Island = CFrameMon
-            elseif level == 330 or level <= 374 then
-                Island = CFrameMon
-            elseif level == 375 or level <= 399 then
-                Island = CFrameMon
-                Island2 = CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875)
-            elseif level == 400 or level <= 449 then
-                Island = CFrameMon
-            elseif level == 450 or level <= 474 then
-                Island = CFrameMon
-                Island2 = CFrame.new(61179.31640625, 1.677048683166504, 1949.034912109375)
-            elseif level == 475 or level <= 524 then
-                Island = CFrameMon
-            elseif level == 525 or level <= 549 then
-                Island = CFrameMon
-            elseif level == 550 or level <= 624 then
-                Island = CFrameMon
-            elseif level == 625 or level <= 649 then
-                Island = CFrameMon
-            elseif level >= 650 then
-                Island = CFrameMon
+            if game.PlaceId == 2753915549 then
+                if level == 10 or level <= 14 then
+                    Island = CFrameMon
+                elseif level == 15 or level <= 29 then
+                    Island = CFrameMon
+                elseif level == 30 or level <= 39 then
+                    Island = CFrameMon
+                elseif level == 40 or level <= 59 then
+                    Island = CFrameMon
+                elseif level == 60 or level <= 74 then
+                    Island = CFrameMon
+                elseif level == 75 or level <= 89 then
+                    Island = CFrameMon
+                elseif level == 89 or level <= 99 then
+                    Island = CFrameMon
+                elseif level == 100 or level <= 119 then
+                    Island = CFrameMon
+                elseif level == 120 or level <= 149 then
+                    Island = CFrameMon
+                elseif level == 150 or level <= 174 then
+                    Island = CFrameMon
+                elseif level == 175 or level <= 189 then
+                    Island = CFrameMon
+                elseif level == 190 or level <= 209 then
+                    Island = CFrameMon
+                elseif level == 210 or level <= 249 then
+                    Island = CFrameMon
+                elseif level == 250 or level <= 274 then
+                    Island = CFrameMon
+                elseif level == 275 or level <= 299 then
+                    Island = CFrameMon
+                elseif level == 300 or level <= 329 then
+                    Island = CFrameMon
+                elseif level == 330 or level <= 374 then
+                    Island = CFrameMon
+                elseif level == 375 or level <= 399 then
+                    Island = CFrameMon
+                    Island2 = CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875)
+                elseif level == 400 or level <= 449 then
+                    Island = CFrameMon
+                elseif level == 450 or level <= 474 then
+                    Island = CFrameMon
+                    Island2 = CFrame.new(61179.31640625, 1.677048683166504, 1949.034912109375)
+                elseif level == 475 or level <= 524 then
+                    Island = CFrameMon
+                elseif level == 525 or level <= 549 then
+                    Island = CFrameMon
+                elseif level == 550 or level <= 624 then
+                    Island = CFrameMon
+                elseif level == 625 or level <= 649 then
+                    Island = CFrameMon
+                elseif level >= 650 then
+                    Island = CFrameMon
+                end
+            end
+            if game.PlaceId == 4442272183 then
+                if level == 700 or level <= 724 then
+                    Island = CFrameMon
+                elseif level == 725 or level <= 774 then
+                    Island = CFrameMon
+                elseif level == 725 or level <= 774 then
+                    Island = CFrameMon
+                elseif level == 725 or level <= 774 then
+                    Island = CFrameMon
+                elseif level == 725 or level <= 774 then
+                    Island = CFrameMon
+                elseif level == 725 or level <= 774 then
+                    Island = CFrameMon
+                elseif level == 725 or level <= 774 then
+                    Island = CFrameMon
+                elseif level == 725 or level <= 774 then
+                    Island = CFrameMon
+                elseif level == 725 or level <= 774 then
+                    Island = CFrameMon
+                elseif level == 725 or level <= 774 then
+                    Island = CFrameMon
+                elseif level == 725 or level <= 774 then
+                    Island = CFrameMon
+                end
             end
         end
     
@@ -548,6 +578,7 @@ if KEY then
                                 tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
                                 wait(2)
                             end
+
                             if game:GetService("Players").LocalPlayer.Data.Level.Value == 450 then
                                 if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
                                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
@@ -679,7 +710,7 @@ if KEY then
             while wait() do
                 if AutoFarm["Farmlevel"] then
                     pcall(function()
-                        if game:GetService("Players").LocalPlayer.Data.Level.Value >= 375 then
+                        if game:GetService("Players").LocalPlayer.Data.Level.Value <= 375 then
                             if game:GetService("Players").LocalPlayer.Data.Level.Value <= 451 then
                                 if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
                                     wait(1)
@@ -718,44 +749,65 @@ if KEY then
             end)
         end)
     
-    
-    -- SimulationRaxNerous
-           
-           coroutine.wrap(function()
-           local StopCamera = require(game.ReplicatedStorage.Util.CameraShaker)StopCamera:Stop()
-               for v,v in pairs(getreg()) do
-                   if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework then
-                        for v,v in pairs(debug.getupvalues(v)) do
-                           if typeof(v) == "table" then
-                               spawn(function()
-                                   game:GetService("RunService").RenderStepped:Connect(function()
-                                       if AutoFarm['FastAttack'] then
-                                            pcall(function()
-                                                v.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
-                                                v.activeController.attacking = false
-                                                v.activeController.increment = 4
-                                                v.activeController.blocking = false   
-                                                v.activeController.hitboxMagnitude = 120
-                                                v.activeController.humanoid.AutoRotate = true
-                                                v.activeController.focusStart = 0
-                                                v.activeController.currentAttackTrack = 0
-                                                sethiddenproperty(game:GetService("Players").LocalPlayer, "Fasttacker", math.huge)
-                                            end)
-                                        end
+        spawn(function()
+            coroutine.wrap(function()
+                local StopCamera = require(game.ReplicatedStorage.Util.CameraShaker)StopCamera:Stop()
+                    for v,v in pairs(getreg()) do
+                        if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework then
+                             for v,v in pairs(debug.getupvalues(v)) do
+                                if typeof(v) == "table" then
+                                    spawn(function()
+                                        game:GetService("RunService").RenderStepped:Connect(function()
+                                            if AutoFarm['Farmlevel'] then
+                                                 pcall(function() 
+                                                     v.activeController.hitboxMagnitude = 120
+                                                 end)
+                                             end
+                                         end)
                                     end)
-                               end)
-                           end
-                       end
-                   end
-               end
-           end)();
+                                end
+                            end
+                        end
+                    end
+                end)();
+            end)
+
+
+    -- SimulationRaxNerous timeToNextAttack = -(math.huge^math.huge^math.huge)
+        spawn(function()
+            coroutine.wrap(function()
+                local StopCamera = require(game.ReplicatedStorage.Util.CameraShaker)StopCamera:Stop()
+                    for v,v in pairs(getreg()) do
+                        if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework then
+                             for v,v in pairs(debug.getupvalues(v)) do
+                                if typeof(v) == "table" then
+                                    spawn(function()
+                                        game:GetService("RunService").RenderStepped:Connect(function()
+                                            if AutoFarm['FastAttack'] then
+                                                 pcall(function()
+                                                     v.activeController.timeToNextAttack = 0
+                                                     v.activeController.attacking = false
+                                                     v.activeController.increment = 4
+                                                     v.activeController.blocking = false   
+                                                     v.activeController.hitboxMagnitude = 120
+                                                     v.activeController.humanoid.AutoRotate = true
+                                                     v.activeController.focusStart = 0
+                                                     v.activeController.currentAttackTrack = 0
+                                                     sethiddenproperty(game:GetService("Players").LocalPlayer, "Fasttacker", math.huge)
+                                                 end)
+                                             end
+                                         end)
+                                    end)
+                                end
+                            end
+                        end
+                    end
+                end)();
+            end)
+           
            
     
-    
-    
-    
-    
-    
+
     
     
         -- Player tween
@@ -779,6 +831,7 @@ if KEY then
     
     
     end
+
     local test = Instance.new("IntValue")
     test.Name = "SunHub"
     test.Parent = game.Players.LocalPlayer
