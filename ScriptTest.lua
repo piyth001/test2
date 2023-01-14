@@ -1,5 +1,4 @@
 
-
 -- game PlaceId = 2753915549 or 4442272183 or 7449423635
 
 -- local ts = game:GetService("TeleportService")
@@ -11,12 +10,13 @@
 
 
 getgenv().Config = {
-    ["KEY"] = "HSTDFG-FJSGGF-FJSHGV",
-    ["KEY"] = "JDGSFF-FKSDHF-KCBSFF"
+    ["KEY1"] = "HSTDFG-FJSGGF-FJSHGV",
+    ["KEY2"] = "JDGSFF-FKSDHF-KCBSFF",
+    ["KEY3"] = "FGHDFS-NCVYDG-FJSBER"
 }
 
 
-if _G.Key == Config["KEY"] then
+if _G.Key == Config["KEY"] or Config["KEY2"] or Config["KEY3"] then
     if game.PlaceId == 2753915549 or 4442272183 or 7449423635 then
         local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
         local Window = Library.CreateLib("Sun Hub", "DarkTheme")
@@ -87,7 +87,25 @@ if _G.Key == Config["KEY"] then
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", buy)
         end)
     
+        local Tab = Window:NewTab("Player")
+        local Section = Tab:NewSection("Section Player")
     
+        Playerr = {}
+        Plr = nil
+        
+        for i,v in pairs(game:GetService("Players"):GetChildren()) do
+            table.insert(Playerr,v.Name)
+        end
+    
+        Section:NewDropdown("Seclect", "", Playerr, function(a)
+            Plr = a
+        end)
+
+        Section:NewButton("Kick", "", function()
+            game.Players[Plr]:Kick("BYE NOOB!!")
+        end)
+
+
         local Tab = Window:NewTab("Settings")
         local Section = Tab:NewSection("Main")
     
@@ -763,7 +781,22 @@ if _G.Key == Config["KEY"] then
     
     
     end
+    local test = Instance.new("IntValue")
+    test.Name = "SunHub"
+    test.Parent = game.Players.LocalPlayer
+    test.Value = 2
+
+    wait(1)
+    local Test = game:GetService("Players").LocalPlayer.SunHub
+    Test.Value += 1
+    
+    if game:GetService("Players").LocalPlayer.SunHub.Value >= 4 then
+        game.Players.LocalPlayer:Kick("YOU RUN SCRIPT READY!!")
+    end
+    
     else
         print("WRONG PASSWORD!!")
         game.Players.LocalPlayer:Kick("WRONG PASSWORD!!")
 end
+
+
