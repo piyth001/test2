@@ -334,8 +334,8 @@ if KEY then
                     LevelQuest = 1
                     NameMon = "Galley Pirate"
                     CFrameQuest = CFrame.new(5259.81982, 37.3500175, 4050.0293, 0.087131381, 0, 0.996196866, 0, 1, 0, -0.996196866, 0, 0.087131381)
-                    CFrameMon = CFrame.new(5607.97900390625, 78.90135192871094, 3917.329833984375)
-                elseif MyLevel >= 650 then -- Galley Captain
+                    CFrameMon = CFrame.new(5494.79638671875, 38.538639068603516, 3992.77294921875)
+                elseif MyLevel == 650 or MyLevel <= 700 then -- Galley Captain
                     Ms = "Galley Captain [Lv. 650]"
                     NameQuest = "FountainQuest"
                     LevelQuest = 2
@@ -492,7 +492,7 @@ if KEY then
                     NameMon = "Sea Soldier"
                     CFrameQuest = CFrame.new(-3054.44458, 235.544281, -10142.8193, 0.990270376, -0, -0.13915664, 0, 1, -0, 0.13915664, 0, 0.990270376)
                     CFrameMon = CFrame.new(-3115.78223, 63.8785706, -9808.38574, -0.913427353, 3.11199457e-08, 0.407000452, 7.79564235e-09, 1, -5.89660658e-08, -0.407000452, -5.06883708e-08, -0.913427353)
-                elseif MyLevel >= 1450 then -- Water Fighter [Lv. 1450]
+                elseif MyLevel == 1450 or MyLevel <= 1500 then -- Water Fighter [Lv. 1450]
                     Ms = "Water Fighter [Lv. 1450]"
                     NameQuest = "ForgottenQuest"
                     LevelQuest = 2
@@ -558,7 +558,7 @@ if KEY then
                     Island = CFrameMon
                 elseif level == 625 or level <= 649 then
                     Island = CFrameMon
-                elseif level >= 650 then
+                elseif level == 650 or level <= 700 then
                     Island = CFrameMon
                 end
             end
@@ -603,7 +603,7 @@ if KEY then
                     Island = CFrameMon
                 elseif level == 1425 or level <= 1449 then
                     Island = CFrameMon
-                elseif level >= 1450 then
+                elseif level == 1450 or level <= 1500 then
                     Island = CFrameMon
                 end
             end
@@ -619,32 +619,30 @@ if KEY then
                     Checklevel()
                     island()
                     pcall(function()
-                        
+                        tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
                         if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
                         end
     
                         if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
     
-                            if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
-                                if not game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
+                                    if not game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                        tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
+                                        wait(3)
+                                    end
                                     tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
-                                    wait(3)
+                                    wait(2)
                                 end
-                                tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
-                                wait(2)
-                            end
 
-                            if game:GetService("Players").LocalPlayer.Data.Level.Value == 450 then
-                                if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
-                                    wait(5)
+                                if game:GetService("Players").LocalPlayer.Data.Level.Value == 450 then
+                                    if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
+                                        wait(5)
+                                    end
                                 end
-                            end
-    
     
                             tp(CFrameQuest)
-                            tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
                             wait(4)
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
                         end
@@ -677,8 +675,8 @@ if KEY then
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                             if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
                                 if v.Name == Ms then
-                                    tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
                                     tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
+                                    tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
                                 end
                             end
                         end
@@ -708,7 +706,20 @@ if KEY then
         end)
     
                     
-    
+        spawn(function()
+            while task.wait() do
+                if Config['Farmlevel'] then
+                    pcall(function()
+                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                            tp(Island)
+                            tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
+                        end
+                    end)
+                end
+            end
+        end)
+
+
     
     
         -- Auto Select item
