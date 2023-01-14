@@ -685,9 +685,23 @@ if KEY then
             end
         end)
     
+    -- teleport Island2
+    spawn(function ()
+        while task.wait() do
+            if AutoFarm["Farmlevel"] then
+                pcall(function()
+                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                        tp2(Island * CFrame.new(0,0,0))
+                        tp(Island * CFrame.new(0,4,0))
+                    end
+                end)
+            end
+            wait(5)
+        end
+    end)
     
     
-    
+
         -- Create PArt tween
         spawn(function()
             while wait() do
@@ -706,18 +720,7 @@ if KEY then
         end)
     
                     
-        spawn(function()
-            while task.wait() do
-                if Config['Farmlevel'] then
-                    pcall(function()
-                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                            tp(Island)
-                            tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
-                        end
-                    end)
-                end
-            end
-        end)
+         
 
 
     
