@@ -1,7 +1,5 @@
 
 
-if game.PlaceId == 2753915549 then
-    
     local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
     local Window = Library.CreateLib("Sun Hub", "DarkTheme")
     local Tab = Window:NewTab("AutoFarm")
@@ -520,4 +518,4 @@ end)
         tween:Play()
         end
     end
-    end
+
