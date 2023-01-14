@@ -644,7 +644,7 @@ if KEY then
     
     
                             tp(CFrameQuest * CFrame.new(0,4,0))
-                            tp2(CFrameQuest * CFrame.new(0,0,0))
+                            tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
                             wait(4)
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
                         end
@@ -751,12 +751,12 @@ if KEY then
                 if AutoFarm["Farmlevel"] then
                     pcall(function()
                         if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                            tp2(Island * CFrame.new(0,0,0))
+                            wait(1)
                             tp(Island * CFrame.new(0,4,0))
+                            tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
                         end
                     end)
                 end
-                wait(5)
             end
         end)
     
