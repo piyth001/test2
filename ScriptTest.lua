@@ -11,12 +11,10 @@
 
 getgenv().Config = {
     ["KEY1"] = "HSTDFG-FJSGGF-FJSHGV",
-    ["KEY2"] = "JDGSFF-FKSDHF-KCBSFF",
-    ["KEY3"] = "FGHDFS-NCVYDG-FJSBER"
 }
 
 
-if _G.Key == Config["KEY"] or Config["KEY2"] or Config["KEY3"] then
+if _G.Key == Config["KEY"] then
     if game.PlaceId == 2753915549 or 4442272183 or 7449423635 then
         local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
         local Window = Library.CreateLib("Sun Hub", "DarkTheme")
@@ -798,5 +796,4 @@ if _G.Key == Config["KEY"] or Config["KEY2"] or Config["KEY3"] then
         print("WRONG PASSWORD!!")
         game.Players.LocalPlayer:Kick("WRONG PASSWORD!!")
 end
-
 
