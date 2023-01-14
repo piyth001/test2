@@ -334,7 +334,7 @@ if KEY then
                     LevelQuest = 1
                     NameMon = "Galley Pirate"
                     CFrameQuest = CFrame.new(5259.81982, 37.3500175, 4050.0293, 0.087131381, 0, 0.996196866, 0, 1, 0, -0.996196866, 0, 0.087131381)
-                    CFrameMon = CFrame.new(5552.021484375, 38.538639068603516, 3978.396728515625)
+                    CFrameMon = CFrame.new(5607.97900390625, 78.90135192871094, 3917.329833984375)
                 elseif MyLevel >= 650 then -- Galley Captain
                     Ms = "Galley Captain [Lv. 650]"
                     NameQuest = "FountainQuest"
