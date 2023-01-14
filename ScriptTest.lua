@@ -334,14 +334,14 @@ if KEY then
                     LevelQuest = 1
                     NameMon = "Galley Pirate"
                     CFrameQuest = CFrame.new(5259.81982, 37.3500175, 4050.0293, 0.087131381, 0, 0.996196866, 0, 1, 0, -0.996196866, 0, 0.087131381)
-                    CFrameMon = CFrame.new(5569.80518, 38.5269432, 3849.01196, 0.896460414, 3.98027495e-08, 0.443124533, -1.34262139e-08, 1, -6.26611296e-08, -0.443124533, 5.02237434e-08, 0.896460414)
+                    CFrameMon = CFrame.new(5552.021484375, 38.538639068603516, 3978.396728515625)
                 elseif MyLevel >= 650 then -- Galley Captain
                     Ms = "Galley Captain [Lv. 650]"
                     NameQuest = "FountainQuest"
                     LevelQuest = 2
                     NameMon = "Galley Captain"
                     CFrameQuest = CFrame.new(5259.81982, 37.3500175, 4050.0293, 0.087131381, 0, 0.996196866, 0, 1, 0, -0.996196866, 0, 0.087131381)
-                    CFrameMon = CFrame.new(5782.90186, 94.5326462, 4716.78174, 0.361808896, -1.24757526e-06, -0.932252586, 2.16989656e-06, 1, -4.96097414e-07, 0.932252586, -1.84339774e-06, 0.361808896)
+                    CFrameMon = CFrame.new(5470.39306640625, 38.50114059448242, 4910.71435546875)
                 end
             end
             if game.PlaceId == 4442272183 then
@@ -643,7 +643,7 @@ if KEY then
                             end
     
     
-                            tp(CFrameQuest * CFrame.new(0,4,0))
+                            tp(CFrameQuest)
                             tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
                             wait(4)
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
@@ -744,21 +744,7 @@ if KEY then
         
     
     
-    
-        -- teleport island level
-        spawn(function ()
-            while task.wait() do
-                if AutoFarm["Farmlevel"] then
-                    pcall(function()
-                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                            wait(1)
-                            tp(Island * CFrame.new(0,4,0))
-                            tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
-                        end
-                    end)
-                end
-            end
-        end)
+
     
     
     
