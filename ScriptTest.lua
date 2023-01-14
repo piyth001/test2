@@ -1,7 +1,7 @@
 
 
-if _G.Key == "JSGFNG-FJDGSF-DKFHBS-PORNHUB" then
-    print("PASSWORD SUCCES")
+
+    
     local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
     local Window = Library.CreateLib("Sun Hub", "DarkTheme")
     local Tab = Window:NewTab("AutoFarm")
@@ -520,7 +520,4 @@ end)
         tween:Play()
         end
     end
-else 
-    print("WRONG PASSWORD")
-
-end
+    
