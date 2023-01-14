@@ -340,7 +340,7 @@ if KEY then
                     LevelQuest = 2
                     NameMon = "Galley Captain"
                     CFrameQuest = CFrame.new(5259.81982, 37.3500175, 4050.0293, 0.087131381, 0, 0.996196866, 0, 1, 0, -0.996196866, 0, 0.087131381)
-                    CFrameMon = CFrame.new(5470.39306640625, 38.50114059448242, 4910.71435546875)
+                    CFrameMon = CFrame.new(5498.7939453125, 47.3275146484375, 4857.3564453125)
                 end
             end
             if game.PlaceId == 4442272183 then
@@ -497,7 +497,7 @@ if KEY then
                     LevelQuest = 2
                     NameMon = "Water Fighter"
                     CFrameQuest = CFrame.new(-3054.44458, 235.544281, -10142.8193, 0.990270376, -0, -0.13915664, 0, 1, -0, 0.13915664, 0, 0.990270376)
-                    CFrameMon = CFrame.new(5473.8154296875, 38.50114059448242, 4881.28662109375)
+                    CFrameMon = CFrame.new(-3212.99683, 263.809296, -10551.8799, 0.742111444, -5.59139615e-08, -0.670276582, 1.69155214e-08, 1, -6.46908234e-08, 0.670276582, 3.66697037e-08, 0.742111444)
                 end
             end
         end
@@ -648,6 +648,15 @@ if KEY then
                             
                         if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
                             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                                    if v.Name == Ms then
+                                        tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
+                                        tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
+                                    end
+                                end
+                            end
+
+                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                                 if v.Name == Ms then
                                     v.HumanoidRootPart.CanCollide = false
                                     v.Humanoid.WalkSpeed = 0
@@ -665,40 +674,8 @@ if KEY then
                 end
             end
         end)
-    
-        -- Teleport Monkey
-        spawn(function()
-            while wait() do
-                if AutoFarm["Farmlevel"] then
-                    pcall(function()
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                                if v.Name == Ms then
-                                    tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
-                                    tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
-                                end
-                            end
-                        end
-                    end)
-                end
-            end
-        end)
-    
-    -- teleport Island2
-    spawn(function ()
-        while task.wait() do
-            if AutoFarm["Farmlevel"] then
-                pcall(function()
-                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                        tp2(Island * CFrame.new(0,0,0))
-                        tp(Island * CFrame.new(0,4,0))
-                    end
-                end)
-            end
-            wait(5)
-        end
-    end)
-    
+
+
     
 
         -- Create PArt tween
@@ -721,7 +698,21 @@ if KEY then
                     
          
 
-
+    -- teleport Island2
+    spawn(function ()
+        while task.wait() do
+            if AutoFarm["Farmlevel"] then
+                pcall(function()
+                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                        tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
+                        tp(Island * CFrame.new(0,4,0))
+                    end
+                end)
+            end
+            wait(10)
+        end
+    end)
+    
     
     
         -- Auto Select item
