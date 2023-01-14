@@ -327,7 +327,7 @@ if KEY then
                     LevelQuest = 2
                     NameMon = "Royal Soldier"
                     CFrameQuest = CFrame.new(-7906.81592, 5634.6626, -1411.99194, 0, 0, -1, 0, 1, 0, 1, 0, 0)
-                    CFrameMon = CFrame.new(-7837.31152, 5649.65186, -1791.08582, -0.716008604, 0.0104285581, -0.698013008, 5.02521061e-06, 0.99988848, 0.0149335321, 0.69809103, 0.0106890313, -0.715928733)
+                    CFrameMon = CFrame.new(-7820.73681640625, 5606.876953125, -1728.6961669921875)
                 elseif MyLevel == 625 or MyLevel <= 649 then -- Galley Pirate
                     Ms = "Galley Pirate [Lv. 625]"
                     NameQuest = "FountainQuest"
@@ -627,7 +627,7 @@ if KEY then
                         if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
     
                             if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
-                                if not game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman"then
+                                if not game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
                                     tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
                                     wait(3)
                                 end
@@ -678,7 +678,7 @@ if KEY then
                             if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
                                 if v.Name == Ms then
                                     tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
-                                    tp2(v.HumanoidRootPart.CFrame * CFrame.new(0,20,0))
+                                    tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
                                 end
                             end
                         end
