@@ -17,7 +17,7 @@ local KEY = _G.Key == "KSHGGS-FKSHCV-IRYDNV" or _G.Key == "JSHFVD-URYDGD-LLFKCM"
 if KEY then
     if game.PlaceId == 2753915549 or 4442272183 or 7449423635 then
         local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-        local Window = Library.CreateLib("Sun Hub", "DarkTheme")
+        local Window = Library.CreateLib("Xipper X Hub", "DarkTheme")
         local Tab = Window:NewTab("AutoFarm")
         local Section = Tab:NewSection("Farm")
         local Cemara = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework.CameraShaker)
