@@ -21,10 +21,13 @@ if KEY then
         local Section = Tab:NewSection("Farm")
         local Cemara = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework.CameraShaker)
         Cemara.CameraShakeInstance.CameraShakeState = {FadingIn = 3, FadingOut = 2, Sustained = 0, Inactive = 1}
-    
+        
     
         Section:NewToggle("AutoFarm", "", function(a)
             AutoFarm["Farmlevel"] = a
+        end)
+        Section:NewToggle("Auto World two", "", function(a)
+            AutoFarm["AutoNewWorld"] = a
         end)
         Section:NewToggle("FastAttack", "", function(a)
             AutoFarm["FastAttack"] = a
@@ -158,6 +161,7 @@ if KEY then
             ["WeaponAuto"] = false,
             ["AutoState"] = false,
             ["FastAttack"] = false,
+            ["AutoNewWorld"] = false
         }
     
     
@@ -334,7 +338,7 @@ if KEY then
                     NameMon = "Galley Pirate"
                     CFrameQuest = CFrame.new(5259.81982, 37.3500175, 4050.0293, 0.087131381, 0, 0.996196866, 0, 1, 0, -0.996196866, 0, 0.087131381)
                     CFrameMon = CFrame.new(5494.79638671875, 38.538639068603516, 3992.77294921875)
-                elseif MyLevel == 650 or MyLevel <= 700 then -- Galley Captain
+                elseif MyLevel >= 700 then -- Galley Captain
                     Ms = "Galley Captain [Lv. 650]"
                     NameQuest = "FountainQuest"
                     LevelQuest = 2
@@ -491,7 +495,7 @@ if KEY then
                     NameMon = "Sea Soldier"
                     CFrameQuest = CFrame.new(-3054.44458, 235.544281, -10142.8193, 0.990270376, -0, -0.13915664, 0, 1, -0, 0.13915664, 0, 0.990270376)
                     CFrameMon = CFrame.new(-3115.78223, 63.8785706, -9808.38574, -0.913427353, 3.11199457e-08, 0.407000452, 7.79564235e-09, 1, -5.89660658e-08, -0.407000452, -5.06883708e-08, -0.913427353)
-                elseif MyLevel == 1450 or MyLevel <= 1500 then -- Water Fighter [Lv. 1450]
+                elseif MyLevel >= 1450 then -- Water Fighter [Lv. 1450]
                     Ms = "Water Fighter [Lv. 1450]"
                     NameQuest = "ForgottenQuest"
                     LevelQuest = 2
@@ -557,7 +561,7 @@ if KEY then
                     Island = CFrameMon
                 elseif level == 625 or level <= 649 then
                     Island = CFrameMon
-                elseif level == 650 or level <= 700 then
+                elseif level >= 700 then
                     Island = CFrameMon
                 end
             end
@@ -615,88 +619,85 @@ if KEY then
         spawn(function()
             while task.wait() do
                 if AutoFarm["Farmlevel"] then
-                    Checklevel()
-                    island()
-                    pcall(function()
-                        tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
-                        if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
-                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                        end
-    
-                        if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-    
-                                if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
-                                    if not game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                        tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
-                                        wait(3)
-                                    end
-                                    tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
-                                    wait(2)
-                                end
-
-                                if game:GetService("Players").LocalPlayer.Data.Level.Value == 450 then
-                                    if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
-                                        wait(5)
-                                    end
-                                end
-    
-                            tp(CFrameQuest)
-                            wait(4)
-                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
-                        end
-                            
-                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                                    if v.Name == Ms then
-                                        tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
-                                        tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
-                                    end
-                                end
+                        Checklevel()
+                        island()
+                        pcall(function()
+                            if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
                             end
+        
+                            if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+        
+                                    if game:GetService("Players").LocalPlayer.Data.Level.Value >= 449 then
+                                        if not game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                            tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
+                                            wait(3)
+                                        end
+                                        tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
+                                        wait(2)
+                                    end
 
-                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                if v.Name == Ms then
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.Humanoid.WalkSpeed = 0
-                                    v.Humanoid.JumpPower = 0
-                                    for i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                        if v.Name == Ms or v2.Name == Ms then
-                                            v.HumanoidRootPart.CFrame = v2.HumanoidRootPart.CFrame
-                                            v.HumanoidRootPart.CFrame = CFrameMon
+                                    if game:GetService("Players").LocalPlayer.Data.Level.Value == 450 then
+                                        if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
+                                            wait(5)
+                                        end
+                                    end
+        
+                                tp(CFrameQuest)
+                                wait(4)
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
+                            end
+                                
+                            if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                                        if v.Name == Ms then
+                                            tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
+                                        end
+                                    end
+                                end
+
+                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                    if v.Name == Ms then
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.Humanoid.JumpPower = 0
+                                        for i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                            if v.Name == Ms and v2.Name == Ms then
+                                                v.HumanoidRootPart.CFrame = v2.HumanoidRootPart.CFrame
+                                                v2.Humanoid.WalkSpeed = 0
+                                                v2.Humanoid.JumpPower = 0
+                                                v2.HumanoidRootPart.CanCollide = false
+                                                v2.HumanoidRootPart.CFrame = CFrameMon
+                                                if sethiddenproperty then
+                                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                                                end
+                                            end
                                         end
                                     end
                                 end
                             end
-                        end
-                    end)
+                        end)
                 end
             end
         end)
 
-
-    
-
-        -- Create PArt tween
         spawn(function()
-            while wait() do
+            game:GetService("RunService").Heartbeat:Connect(function()
                 if AutoFarm["Farmlevel"] then
-                    if not game:GetService("Workspace"):FindFirstChild("tween1") then
-                        local part = Instance.new("Part")
-                        part.Name = "tween1"
-                        part.Parent = game:GetService("Workspace")
-                        part.Anchored = true
-                        part.Transparency = 0
-                        part.Size = Vector3.new(7,1,7)
-                        part.CFrame = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0)
+                    if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") then
+                        setfflag("HumanoidParallelRemoveNoPhysics", "False")
+                        setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+                        game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
                     end
                 end
-            end
+            end)
         end)
     
-                    
-         
+
+    
+
 
     -- teleport Island2
     spawn(function ()
@@ -704,7 +705,6 @@ if KEY then
             if AutoFarm["Farmlevel"] then
                 pcall(function()
                     if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                        tp2(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0))
                         tp(Island * CFrame.new(0,4,0))
                     end
                 end)
@@ -756,15 +756,14 @@ if KEY then
             while wait() do
                 if AutoFarm["Farmlevel"] then
                     pcall(function()
-                        if game:GetService("Players").LocalPlayer.Data.Level.Value <= 375 then
-                            if game:GetService("Players").LocalPlayer.Data.Level.Value <= 451 then
+                        if game:GetService("Players").LocalPlayer.Data.Level.Value == 375 then
+                            if game:GetService("Players").LocalPlayer.Data.Level.Value == 451 then
                                 if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
                                     wait(1)
                                     game.Players.LocalPlayer.Character.Humanoid.Health = 0
                                     wait(2)
                                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrameQuest
                                     wait(2)
-                                    tp2(CFrameQuest)
                                     tp(CFrameQuest)
                                     wait(5)
                                 end
@@ -794,6 +793,7 @@ if KEY then
                 end
             end)
         end)
+
     
         spawn(function()
             coroutine.wrap(function()
@@ -854,7 +854,37 @@ if KEY then
            
     
 
-    
+    spawn(function()
+        while wait() do 
+            if AutoFarm["AutoNewWorld"] then
+                pcall(function()
+                    if game:GetService("Players").LocalPlayer.Data.Level.Value >= 700 then
+                        if not game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Key") then                 
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("DressrosaQuestProgress",  "Detective")
+                        end
+                        if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Key") then
+                            tp(CFrame.new(1347.5673828125, 37.349361419677734, -1325.6558837890625))
+                        end
+                        if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Ice" then
+                            game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Key"))
+                            if game:GetService("Workspace").Map.Ice.Door.CanCollide == false then
+                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                    if v.Name == "Ice Admiral [Lv. 700] [Boss]" then
+                                        tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+
+
+
+
+
     
         -- Player tween
         function tp(CF)
@@ -864,18 +894,8 @@ if KEY then
             tween:Play()
         end
     
-    
-        -- Part Tween in TweenInfo
-        function tp2(CF)
-            if game.workspace:FindFirstChild("tween1") then
-            local tween_s = game:service"TweenService"
-            local info = TweenInfo.new(0, Enum.EasingStyle.Linear)
-            local tween = tween_s:Create(game:GetService("Workspace").tween1, info, {CFrame = CF})
-            tween:Play()
-            end
-        end
-    
-    
+
+
     end
 
     local test = Instance.new("IntValue")
@@ -895,4 +915,29 @@ if KEY then
         print("WRONG PASSWORD!!")
         game.Players.LocalPlayer:Kick("WRONG PASSWORD!!")
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
