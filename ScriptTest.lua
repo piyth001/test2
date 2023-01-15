@@ -664,12 +664,12 @@ if KEY then
                                         v.Humanoid.WalkSpeed = 0
                                         v.Humanoid.JumpPower = 0
                                         for i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                            if v.Name == Ms and v2.Name == Ms then
+                                            if v.Name == Ms a v2.Name == Ms then
                                                 v.HumanoidRootPart.CFrame = v2.HumanoidRootPart.CFrame
                                                 v2.Humanoid.WalkSpeed = 0
                                                 v2.Humanoid.JumpPower = 0
-                                                v2.HumanoidRootPart.CanCollide = false
                                                 v2.HumanoidRootPart.CFrame = CFrameMon
+                                                v2.HumanoidRootPart.CanCollide = false
                                                 if sethiddenproperty then
                                                     sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
                                                 end
@@ -831,7 +831,7 @@ if KEY then
                                         game:GetService("RunService").RenderStepped:Connect(function()
                                             if AutoFarm['FastAttack'] then
                                                  pcall(function()
-                                                     v.activeController.timeToNextAttack = 0
+                                                     v.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
                                                      v.activeController.attacking = false
                                                      v.activeController.increment = 4
                                                      v.activeController.blocking = false   
