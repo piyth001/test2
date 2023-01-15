@@ -645,8 +645,9 @@ if KEY then
                                     end
         
                                 tp(CFrameQuest)
-                                wait(4)
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
+                                if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
+                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
+                                end
                             end
                                 
                             if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
@@ -664,11 +665,10 @@ if KEY then
                                         v.Humanoid.WalkSpeed = 0
                                         v.Humanoid.JumpPower = 0
                                         for i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                            if v.Name == Ms a v2.Name == Ms then
+                                            if v.Name == Ms and v2.Name == Ms then
                                                 v.HumanoidRootPart.CFrame = v2.HumanoidRootPart.CFrame
                                                 v2.Humanoid.WalkSpeed = 0
                                                 v2.Humanoid.JumpPower = 0
-                                                v2.HumanoidRootPart.CFrame = CFrameMon
                                                 v2.HumanoidRootPart.CanCollide = false
                                                 if sethiddenproperty then
                                                     sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
@@ -695,6 +695,25 @@ if KEY then
             end)
         end)
     
+
+
+        
+
+        spawn(function()
+            game:GetService("RunService").Heartbeat:Connect(function()
+                if AutoFarm["Farmlevel"] then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == Ms then
+                            if v:FindFirstChild("Humanoid") then
+                                setfflag("HumanoidParallelRemoveNoPhysics", "False")
+                                setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+                                v.Humanoid:ChangeState(11)
+                            end
+                        end
+                    end
+                end
+            end)
+        end)
 
     
 
@@ -915,6 +934,10 @@ if KEY then
         print("WRONG PASSWORD!!")
         game.Players.LocalPlayer:Kick("WRONG PASSWORD!!")
 end
+
+
+
+
 
 
 
