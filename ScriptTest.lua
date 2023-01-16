@@ -26,6 +26,9 @@ if KEY then
         Section:NewToggle("AutoFarm", "", function(a)
             AutoFarm["Farmlevel"] = a
         end)
+        Section:NewToggle("Bring Mob", "", function(a)
+            AutoFarm["BringMob"] = a
+        end)
         Section:NewToggle("Auto World two", "", function(a)
             AutoFarm["AutoNewWorld"] = a
         end)
@@ -79,7 +82,7 @@ if KEY then
         local Tab = Window:NewTab("AutoBuy")
         local Section = Tab:NewSection("Section Name")
     
-        buylist = {"Geppo","Buso","Soru"}
+        buylist = {"Geppo","Buso","Soru","Ken","Black Leg","Electro","Fishman Karate",}
         buy = nil
     
         Section:NewDropdown("Seclect item", "", buylist, function(a)
@@ -87,7 +90,19 @@ if KEY then
         end)
     
         Section:NewButton("Buy", "", function()
-            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", buy)
+            if buy == "Geppo" then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Geppo")
+            elseif buy == "Buso" then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Buso")
+            elseif buy == "Soru" then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Soru")
+            elseif buy == "Ken" then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Ken")
+            elseif buy == "Black Leg" then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg", true)
+            elseif buy == "Electro" then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro", true)
+            end
         end)
     
         local Tab = Window:NewTab("Player")
@@ -161,10 +176,12 @@ if KEY then
             ["WeaponAuto"] = false,
             ["AutoState"] = false,
             ["FastAttack"] = false,
-            ["AutoNewWorld"] = false
+            ["AutoNewWorld"] = false,
+            ["BringMob"] = false
         }
-    
-    
+        
+        
+
     
         -- functino checklevel
         function Checklevel()
@@ -612,110 +629,100 @@ if KEY then
             end
         end
     
+
     
     
+    function Monter()
+        game:GetService("RunService").Heartbeat:Connect(function()
+            if AutoFarm["Farmlevel"] then
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") then
+                    setfflag("HumanoidParallelRemoveNoPhysics", "False")
+                    setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+                    game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
+                end
+
+                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                    if v.Name == Ms then
+                        if v:FindFirstChild("Humanoid") then
+                            setfflag("HumanoidParallelRemoveNoPhysics", "False")
+                            setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+                            v.Humanoid:ChangeState(11)
+                        end
+                    end
+                end
+            end
+        end)
+    end
     
+
             -- autoFarm
         spawn(function()
             while task.wait() do
                 if AutoFarm["Farmlevel"] then
-                        Checklevel()
-                        island()
-                        pcall(function()
-                            if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                            end
-        
-                            if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-        
-                                    if game:GetService("Players").LocalPlayer.Data.Level.Value >= 449 then
-                                        if not game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                            tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
-                                            wait(3)
-                                        end
+                    Checklevel()
+                    island()
+                    pcall(function()
+                        if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                        end
+    
+                        if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                            Monter()
+                                if game:GetService("Players").LocalPlayer.Data.Level.Value >= 449 then
+                                    if not game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
                                         tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
-                                        wait(2)
+                                        wait(3)
                                     end
-
-                                    if game:GetService("Players").LocalPlayer.Data.Level.Value == 450 then
-                                        if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
-                                            wait(5)
-                                        end
-                                    end
-        
-                                tp(CFrameQuest)
-                                if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
-                                end
-                            end
-                                
-                            if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                                        if v.Name == Ms then
-                                            tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
-                                        end
-                                    end
+                                    tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
+                                    wait(2)
                                 end
 
-                                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                    if v.Name == Ms then
-                                        v.HumanoidRootPart.CanCollide = false
-                                        v.Humanoid.WalkSpeed = 0
-                                        v.Humanoid.JumpPower = 0
-                                        for i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                            if v.Name == Ms and v2.Name == Ms then
-                                                v.HumanoidRootPart.CFrame = v2.HumanoidRootPart.CFrame
-                                                v2.Humanoid.WalkSpeed = 0
-                                                v2.Humanoid.JumpPower = 0
-                                                v2.HumanoidRootPart.CanCollide = false
-                                                if sethiddenproperty then
-                                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-                                                end
-                                            end
-                                        end
+                                if game:GetService("Players").LocalPlayer.Data.Level.Value == 450 then
+                                    if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
+                                        wait(5)
                                     end
                                 end
+    
+                            tp(CFrameQuest)
+                            if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
                             end
-                        end)
+                        end
+                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if v.Name == Ms then
+                                    tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.Humanoid.WalkSpeed = 0
+                                    v.Humanoid.JumpPower = 0
+                                end
+                            end
+                        end
+                    end)
                 end
             end
         end)
 
         spawn(function()
-            game:GetService("RunService").Heartbeat:Connect(function()
-                if AutoFarm["Farmlevel"] then
-                    if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") then
-                        setfflag("HumanoidParallelRemoveNoPhysics", "False")
-                        setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-                        game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
-                    end
-                end
-            end)
-        end)
-    
-
-
-        
-
-        spawn(function()
-            game:GetService("RunService").Heartbeat:Connect(function()
-                if AutoFarm["Farmlevel"] then
+            while wait() do
+                if AutoFarm["BringMob"] then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                        if v.Name == Ms then
-                            if v:FindFirstChild("Humanoid") then
-                                setfflag("HumanoidParallelRemoveNoPhysics", "False")
-                                setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-                                v.Humanoid:ChangeState(11)
+                        for i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == Ms and v2.Name == Ms then
+                                v.HumanoidRootPart.CFrame = v2.HumanoidRootPart.CFrame
+                                v2.Humanoid.WalkSpeed = 0
+                                v2.Humanoid.JumpPower = 0
+                                v2.HumanoidRootPart.CanCollide = false
+                                if sethiddenproperty then
+                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                                end
                             end
                         end
                     end
                 end
-            end)
+            end
         end)
-
-    
 
 
     -- teleport Island2
@@ -732,7 +739,7 @@ if KEY then
         end
     end)
     
-    
+
     
         -- Auto Select item
         spawn(function()
@@ -767,7 +774,16 @@ if KEY then
         
     
     
-
+        spawn(function()
+            game:GetService("RunService").RenderStepped:Connect(function()
+                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                    if AutoFarm["Farmlevel"] then
+                        game:GetService'VirtualUser':CaptureController()
+                        game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+                    end
+                end
+            end)
+        end)
     
     
     
@@ -793,25 +809,9 @@ if KEY then
             end
         end)
     
+        
     
-    
-        -- Auto Clicker 
-        spawn(function()
-            game:GetService("RunService").RenderStepped:Connect(function()
-                if AutoFarm["Farmlevel"] then
-                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                        pcall(function()
-                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren())do
-                                if v.Name == Ms then
-                                    game:GetService'VirtualUser':CaptureController()
-                                    game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
-                                end
-                            end
-                        end)
-                    end
-                end
-            end)
-        end)
+       
 
     
         spawn(function()
@@ -837,6 +837,8 @@ if KEY then
                 end)();
             end)
 
+
+            
 
     -- SimulationRaxNerous timeToNextAttack = -(math.huge^math.huge^math.huge)
         spawn(function()
