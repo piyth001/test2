@@ -26,9 +26,15 @@ if KEY then
         Section:NewToggle("AutoFarm", "", function(a)
             AutoFarm["Farmlevel"] = a
         end)
+
+
+
         Section:NewToggle("Bring Mob", "", function(s)
             AutoFarm["BringMob"] = s
         end)
+
+
+
         Section:NewToggle("Auto World two", "", function(f)
             AutoFarm["AutoNewWorld"] = f
         end)
@@ -649,27 +655,8 @@ if KEY then
 
     
     
-    function Monter()
-        game:GetService("RunService").Heartbeat:Connect(function() wait()
-            if AutoFarm["Farmlevel"] then
-                if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") then
-                    setfflag("HumanoidParallelRemoveNoPhysics", "False")
-                    setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-                    game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
-                end
 
-                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                    if v.Name == Ms then
-                        if v:FindFirstChild("Humanoid") then
-                            setfflag("HumanoidParallelRemoveNoPhysics", "False")
-                            setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-                            v.Humanoid:ChangeState(11)
-                        end
-                    end
-                end
-            end
-        end)
-    end
+
     
 
             -- autoFarm
@@ -679,36 +666,36 @@ if KEY then
                     Checklevel()
                     island()
                     pcall(function()    
-                        if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
-                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                        end                                 
-                        if game:GetService("Players").LocalPlayer.Data.Level.Value >= 375 then
-                            
-                            if game:GetService("Players").LocalPlayer.Data.Level.Value <= 450 then
-                                if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
-                                end
-                            end
-
-                            if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
-                                if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value ~= "Fishman" then
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
-                                end
-                                if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                    if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
-                                        if game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Magnitude <= 5000 then
-                                            tp(CFrame.new(4014.199462890625, -1.9869835376739502, -1824.7288818359375))
+                                    if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                    end                                 
+                                    if game:GetService("Players").LocalPlayer.Data.Level.Value >= 375 then
+                                        
+                                        if game:GetService("Players").LocalPlayer.Data.Level.Value <= 450 then
+                                            if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
+                                            end
                                         end
-                                    end
-                                end
-                            end
-                        end   
+
+                                        if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
+                                            if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value ~= "Fishman" then
+                                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
+                                            end
+                                            if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                                if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
+                                                    if game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Magnitude <= 5000 then
+                                                        tp(CFrame.new(4014.199462890625, -1.9869835376739502, -1824.7288818359375))
+                                                    end
+                                                end
+                                            end
+                                        end
+                                    end   
 
 
                         if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                            Monter()
-                            wait(1)
+
                             tp(CFrameQuest)
+
                             if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
                             end
@@ -719,17 +706,9 @@ if KEY then
                                     repeat wait()
                                         HealthMin = v.Humanoid.MaxHealth * 90 / 10
                                             if v.Humanoid.Health > HealthMin then
-                                                Distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude 
-                                                Speed = 300 
-                                                tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
-                                                tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,0,24)})
-                                                tween:Play() 
+                                                tp(v.HumanoidRootPart.CFrame * CFrame.new(0,0,24))
                                             else
-                                                Distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude 
-                                                Speed = 300 
-                                                tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
-                                                tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,24,0)})
-                                                tween:Play()
+                                                tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
                                             end
                                     until _G.AutoFarm == false or v.Humanoid.Health <= 0
                                     else
@@ -749,6 +728,29 @@ if KEY then
         end)
 
 
+        -- Mon
+        spawn(function()
+            game:GetService("RunService").Heartbeat:Connect(function() wait()
+                if AutoFarm["Farmlevel"] then
+                    if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") then
+                        setfflag("HumanoidParallelRemoveNoPhysics", "False")
+                        setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+                        game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
+                    end
+    
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == Ms then
+                            if v:FindFirstChild("Humanoid") then
+                                setfflag("HumanoidParallelRemoveNoPhysics", "False")
+                                setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+                                v.Humanoid:ChangeState(11)
+                            end
+                        end
+                    end
+                end
+            end)
+        end)
+
 
 
         spawn(function()
@@ -767,6 +769,9 @@ if KEY then
                 end
             end
         end)
+
+
+
 
 
 
@@ -919,16 +924,17 @@ if KEY then
 
 
 
-
-
-    
-        -- Player tween
-        function tp(CF)
+         -- Player tween
+         function tp(CF)
             local tween_s = game:service"TweenService"
             local info = TweenInfo.new((game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.Position - CF.Position).Magnitude/250, Enum.EasingStyle.Linear)
             local tween = tween_s:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = CF})
             tween:Play()
         end
+    
+    
+
+       
     
 
 
