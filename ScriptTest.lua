@@ -642,7 +642,7 @@ if KEY then
     
     
     function Monter()
-        game:GetService("RunService").Heartbeat:Connect(function() wait(.5)
+        game:GetService("RunService").Heartbeat:Connect(function() wait()
             if AutoFarm["Farmlevel"] then
                 if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") then
                     setfflag("HumanoidParallelRemoveNoPhysics", "False")
@@ -666,7 +666,7 @@ if KEY then
 
             -- autoFarm
         spawn(function()
-            while task.wait(.1) do
+            while task.wait() do
                 if AutoFarm["Farmlevel"] then
                     Checklevel()
                     island()
@@ -721,7 +721,7 @@ if KEY then
 
 
         spawn(function()
-            while wait(.1) do
+            while wait() do
                 if AutoFarm["BringMob"] then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         for  i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -749,11 +749,11 @@ if KEY then
                         if not game.Players.LocalPlayer.Character.Humanoid:FindFirstChild("RightLowerArm_BusoLayer1") then
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
                         end
-                        tp(Island * CFrame.new(0,4,0))
+                        tp(Island)
+                        wait(1)
                     end
                 end)
             end
-            wait(5)
         end
     end)
 
