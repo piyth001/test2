@@ -753,8 +753,12 @@ if KEY then
 
 
 
+        
+
+
+
         spawn(function()
-            while wait() do
+            while wait(.1) do
                 if AutoFarm["BringMob"] then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         for  i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -769,8 +773,6 @@ if KEY then
                 end
             end
         end)
-
-
 
 
 
