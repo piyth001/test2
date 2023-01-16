@@ -681,9 +681,9 @@ if KEY then
                                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
                                 end
                                 if game:GetService("Players").LocalPlayer.Data.Level.Value >= 450 then
+                                    wait(5)
                                     if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                        wait(10)
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
                                     end
                                 end
                             end
