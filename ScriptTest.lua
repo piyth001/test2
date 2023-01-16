@@ -67,7 +67,7 @@ if KEY then
         
         -- Auto Select item
         spawn(function()
-            while wait(.5) do
+            while wait(1) do
                 if AutoFarm["WeaponAuto"] then
                     game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Weapon))
                 end
@@ -120,7 +120,7 @@ if KEY then
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
             elseif buy == "Electro" then
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
-            elseif buy == "Fishman karate" then
+            elseif buy == "Fishman Karate" then
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
             end
         end)
@@ -378,7 +378,7 @@ if KEY then
                     NameMon = "Galley Pirate"
                     CFrameQuest = CFrame.new(5259.81982, 37.3500175, 4050.0293, 0.087131381, 0, 0.996196866, 0, 1, 0, -0.996196866, 0, 0.087131381)
                     CFrameMon = CFrame.new(5494.79638671875, 38.538639068603516, 3992.77294921875)
-                elseif MyLevel >= 700 then -- Galley Captain
+                elseif MyLevel == 650 or MyLevel <= 700 then -- Galley Captain
                     Ms = "Galley Captain [Lv. 650]"
                     NameQuest = "FountainQuest"
                     LevelQuest = 2
@@ -535,7 +535,7 @@ if KEY then
                     NameMon = "Sea Soldier"
                     CFrameQuest = CFrame.new(-3054.44458, 235.544281, -10142.8193, 0.990270376, -0, -0.13915664, 0, 1, -0, 0.13915664, 0, 0.990270376)
                     CFrameMon = CFrame.new(-3115.78223, 63.8785706, -9808.38574, -0.913427353, 3.11199457e-08, 0.407000452, 7.79564235e-09, 1, -5.89660658e-08, -0.407000452, -5.06883708e-08, -0.913427353)
-                elseif MyLevel >= 1450 then -- Water Fighter [Lv. 1450]
+                elseif MyLevel == 1450 or MyLevel <= 1500 then -- Water Fighter [Lv. 1450]
                     Ms = "Water Fighter [Lv. 1450]"
                     NameQuest = "ForgottenQuest"
                     LevelQuest = 2
@@ -553,108 +553,157 @@ if KEY then
             if game.PlaceId == 2753915549 then
                 if level == 10 or level <= 14 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 15 or level <= 29 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 30 or level <= 39 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 40 or level <= 59 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 60 or level <= 74 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 75 or level <= 89 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 89 or level <= 99 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 100 or level <= 119 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 120 or level <= 149 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 150 or level <= 174 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 175 or level <= 189 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 190 or level <= 209 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 210 or level <= 249 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 250 or level <= 274 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 275 or level <= 299 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 300 or level <= 329 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 330 or level <= 374 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 375 or level <= 399 then
                     Island = CFrameMon
-                    Island2 = CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875)
+                    Island2 = nil
                 elseif level == 400 or level <= 449 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 450 or level <= 474 then
                     Island = CFrameMon
-                    Island2 = CFrame.new(61179.31640625, 1.677048683166504, 1949.034912109375)
+                    Island2 = nil
                 elseif level == 475 or level <= 524 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 525 or level <= 549 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 550 or level <= 624 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 625 or level <= 649 then
                     Island = CFrameMon
-                elseif level >= 700 then
+                    Island2 = nil
+                elseif level == 650 or level <=  700 then
                     Island = CFrameMon
+                    Island2 = nil
                 end
             end
             if game.PlaceId == 4442272183 then
                 if level == 700 or level <= 724 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 725 or level <= 774 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 775 or level <= 799 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 800 or level <= 874 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 875 or level <= 899 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 900 or level <= 949 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 950 or level <= 999 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1000 or level <= 1049 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1050 or level <= 1099 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1100 or level <= 1124 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1125 or level <= 1174 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1175 or level <= 1199 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1200 or level <= 1249 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1250 or level <= 1274 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1275 or level <= 1299 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1300 or level <= 1324 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1325 or level <= 1349 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1350 or level <= 1374 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1375 or level <= 1424 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1425 or level <= 1449 then
                     Island = CFrameMon
+                    Island2 = nil
                 elseif level == 1450 or level <= 1500 then
                     Island = CFrameMon
+                    Island2 = nil
                 end
             end
         end
     
+        function click()
+            game:GetService'VirtualUser':CaptureController()
+            game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+        end
+    
+    
 
-    
-    
+
 
 
     
@@ -665,71 +714,69 @@ if KEY then
                 if AutoFarm["Farmlevel"] then
                     Checklevel()
                     island()
-                    pcall(function()    
-                                    if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                                    end                                 
-                                    if game:GetService("Players").LocalPlayer.Data.Level.Value >= 375 then
-                                        
-                                        if game:GetService("Players").LocalPlayer.Data.Level.Value <= 450 then
-                                            if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
-                                            end
-                                        end
-
-                                        if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
-                                            if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value ~= "Fishman" then
-                                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
-                                            end
-                                            if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                                if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
-                                                    if game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Magnitude <= 5000 then
-                                                        tp(CFrame.new(4014.199462890625, -1.9869835376739502, -1824.7288818359375))
-                                                    end
-                                                end
-                                            end
-                                        end
-                                    end   
-
-
-                        if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-
-                            tp(CFrameQuest)
-
-                            if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
-                            end
-                        elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                if v.Name == Ms and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") then
-                                    if v.Humanoid.Health > 0 then
-                                    repeat wait()
-                                        HealthMin = v.Humanoid.MaxHealth * 90 / 10
-                                            if v.Humanoid.Health > HealthMin then
-                                                tp(v.HumanoidRootPart.CFrame * CFrame.new(0,0,24))
-                                            else
-                                                tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
-                                            end
-                                            if v.Humanoid.Health > HealthMin then
-                                                Distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude 
-                                                Speed = 300 
-                                                tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
-                                                tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,0,24)})
-                                                tween:Play() 
-                                            else
-                                                Distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude 
-                                                Speed = 300 
-                                                tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
-                                                tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,24,0)})
-                                                tween:Play()
-                                            end
-                                    until _G.AutoFarm == false or v.Humanoid.Health <= 0
-                                    else
-                                        tp(CFrameMon)
+                    pcall(function()        
+                        if game:GetService("Players").LocalPlayer.Data.Level.Value >= 375 then
+                            if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
+                                if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value ~= "Fishman" then
+                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
+                                end
+                                wait(.5)
+                                if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                    if game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Magnitude <= 5000 then
+                                        tp(CFrame.new(4014.199462890625, -1.9869835376739502, -1824.7288818359375))
+                                    end
+                                end
+                                if game:GetService("Players").LocalPlayer.Data.Level.Value >= 450 then
+                                    if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                        wait(10)
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
                                     end
                                 end
                             end
-                        end
+                        end                           
+                                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                                        wait(2)
+                                        tp(CFrameQuest)
+                                        if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
+                                            wait(.1)
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,LevelQuest)
+                                        end
+                                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                            if v.Name == Ms and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") then
+                                                if v.Humanoid.Health > 0 then
+                                                repeat wait()
+                                                    click()
+                                                    HealthMin = v.Humanoid.MaxHealth * 90 / 10
+                                                        if v.Humanoid.Health > HealthMin then
+                                                            tp(v.HumanoidRootPart.CFrame * CFrame.new(0,0,24))
+                                                        else
+                                                            tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
+                                                        end
+                                                        if v.Humanoid.Health > HealthMin then
+                                                            Distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude 
+                                                            Speed = 300 
+                                                            tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
+                                                            tween = tweenService:Create(game:GetService("Players")["LocalPAlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,0,24)})
+                                                            tween:Play() 
+                                                        else
+                                                            Distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude 
+                                                            Speed = 300 
+                                                            tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
+                                                            tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,24,0)})
+                                                            tween:Play()
+                                                        end
+                                                until _G.AutoFarm == false or v.Humanoid.Health <= 0
+                                                else
+                                                    tp(CFrameMon)
+                                                end
+                                                if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
+                                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                                end  
+                                            end
+                                            v.HumanoidRootPart.CanCollide = false
+                                        end
+                                    end
                         if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
                             AutoFarm["Farmlevel"] = false
                             wait(3)
@@ -771,7 +818,7 @@ if KEY then
 
 
         spawn(function()
-            while wait(.1) do
+            while wait(.2) do
                 if AutoFarm["BringMob"] then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         for  i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -801,7 +848,9 @@ if KEY then
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
                         end
                         tp(Island)
-                        wait(1)
+                        wait(3)
+                        tp(Island2)
+                        wait(3)
                     end
                 end)
             end
@@ -835,14 +884,7 @@ if KEY then
         
     
     
-        spawn(function()
-            game:GetService("RunService").RenderStepped:Connect(function()
-                if AutoFarm["Farmlevel"] then
-                    game:GetService'VirtualUser':CaptureController()
-                    game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
-                end
-            end)
-        end)
+        
     
     
     
@@ -877,34 +919,54 @@ if KEY then
 
     -- SimulationRaxNerous timeToNextAttack = -(math.huge^math.huge^math.huge)
         spawn(function()
-            coroutine.wrap(function()
-                local StopCamera = require(game.ReplicatedStorage.Util.CameraShaker)StopCamera:Stop()
-                    for v,v in pairs(getreg()) do
-                        if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework then
-                             for v,v in pairs(debug.getupvalues(v)) do
-                                if typeof(v) == "table" then
-                                    spawn(function()
-                                        game:GetService("RunService").RenderStepped:Connect(function()
-                                            if AutoFarm['FastAttack'] then
-                                                 pcall(function()
-                                                     v.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
-                                                     v.activeController.attacking = false
-                                                     v.activeController.increment = 4
-                                                     v.activeController.blocking = false   
-                                                     v.activeController.hitboxMagnitude = 120
-                                                     v.activeController.humanoid.AutoRotate = true
-                                                     v.activeController.focusStart = 0
-                                                     v.activeController.currentAttackTrack = 0
-                                                     sethiddenproperty(game:GetService("Players").LocalPlayer, "Fasttacker", math.huge)
-                                                 end)
-                                             end
-                                         end)
-                                    end)
-                                end
+                            
+                local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
+
+                CombatFrameworkR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
+
+                y = debug.getupvalues(CombatFrameworkR)[2]
+
+                spawn(function()
+
+                    game:GetService("RunService").RenderStepped:Connect(function()
+
+                        if AutoFarm["FastAttack"] then
+
+                            if typeof(y) == "table" then
+
+                                pcall(function()
+
+                                    CameraShaker:Stop()
+
+                                    y.activeController.timeToNextAttack = (math.huge^math.huge^math.huge)
+
+                                    y.activeController.timeToNextAttack = 0
+
+                                    y.activeController.hitboxMagnitude = 60
+
+                                    y.activeController.active = false
+
+                                    y.activeController.timeToNextBlock = 0
+
+                                    y.activeController.focusStart = 1655503339.0980349
+
+                                    y.activeController.increment = 1
+
+                                    y.activeController.blocking = false
+
+                                    y.activeController.attacking = false
+
+                                    y.activeController.humanoid.AutoRotate = true
+
+                                end)
+
                             end
+
                         end
-                    end
-                end)();
+
+                    end)
+
+                end)
             end)
            
            
