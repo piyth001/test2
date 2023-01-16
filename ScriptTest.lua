@@ -87,8 +87,10 @@ if KEY then
         end)
     
     
+
+        -- Buy Item
     
-        local Tab = Window:NewTab("AutoBuy")
+        local Tab = Window:NewTab("Item")
         local Section = Tab:NewSection("Section Name")
     
         buylist = {"Geppo","Buso","Soru","Ken","Black Leg","Electro","Fishman Karate",}
@@ -97,8 +99,9 @@ if KEY then
         Section:NewDropdown("Seclect item", "", buylist, function(a)
             buy = a
         end)
+
     
-        Section:NewButton("Buy", "", function()
+        Section:NewButton("Buy item", "", function()
             if buy == "Geppo" then
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Geppo")
             elseif buy == "Buso" then
@@ -108,11 +111,16 @@ if KEY then
             elseif buy == "Ken" then
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyHaki", "Ken")
             elseif buy == "Black Leg" then
-                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg", true)
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyBlackLeg")
             elseif buy == "Electro" then
-                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro", true)
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
+            elseif buy == "Fishman karate" then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
             end
         end)
+
+
+
     
         local Tab = Window:NewTab("Player")
         local Section = Tab:NewSection("Section Player")
@@ -670,31 +678,31 @@ if KEY then
                 if AutoFarm["Farmlevel"] then
                     Checklevel()
                     island()
-                    pcall(function()
-                        if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
-                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                        end
-                        
+                    pcall(function()                                     
                         if game:GetService("Players").LocalPlayer.Data.Level.Value >= 375 then
-                            if game:GetService("Players").LocalPlayer.Data.Level.Value <= 450 then
+                            if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
+                                wait(5)
+                            end
+                            if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
                                 if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value ~= "Fishman" then
                                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
                                 end
-                                if game:GetService("Players").LocalPlayer.Data.Level.Value >= 450 then
-                                    wait(5)
-                                    if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
+                                if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                    if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
+                                        if game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Magnitude <= 5000 then
+                                            tp(CFrame.new(4014.199462890625, -1.9869835376739502, -1824.7288818359375))
+                                        end
                                     end
                                 end
                             end
-                        end
+                        end   
 
 
-                        if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                            if game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Magnitude <= 5000 then
-                                tp(CFrame.new(4014.199462890625, -1.9869835376739502, -1824.7288818359375))
-                            end
+                        if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
                         end
+
 
                         if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
                             Monter()
@@ -703,14 +711,36 @@ if KEY then
                             if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
                             end
-                        end
-                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                        elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
                             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                if v.Name == Ms then
-                                    tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
-                                    v.HumanoidRootPart.CanCollide = false
+                                if v.Name == Ms and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") then
+                                    if v.Humanoid.Health > 0 then
+                                    repeat wait()
+                                        HealthMin = v.Humanoid.MaxHealth * 90 / 10
+                                            if v.Humanoid.Health > HealthMin then
+                                                Distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude 
+                                                Speed = 300 
+                                                tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
+                                                tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,0,24)})
+                                                tween:Play() 
+                                            else
+                                                Distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude 
+                                                Speed = 300 
+                                                tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
+                                                tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,24,0)})
+                                                tween:Play()
+                                            end
+                                    until _G.AutoFarm == false or v.Humanoid.Health <= 0
+                                    else
+                                        tp(CFrameMon)
+                                    end
                                 end
                             end
+                        end
+                        if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
+                            AutoFarm["Farmlevel"] = false
+                            wait(3)
+                            AutoFarm["Farmlevel"] = true
                         end
                     end)
                 end
