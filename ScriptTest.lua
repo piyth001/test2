@@ -710,6 +710,19 @@ if KEY then
                                             else
                                                 tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
                                             end
+                                            if v.Humanoid.Health > HealthMin then
+                                                Distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude 
+                                                Speed = 300 
+                                                tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
+                                                tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,0,24)})
+                                                tween:Play() 
+                                            else
+                                                Distance = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude 
+                                                Speed = 300 
+                                                tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
+                                                tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,24,0)})
+                                                tween:Play()
+                                            end
                                     until _G.AutoFarm == false or v.Humanoid.Health <= 0
                                     else
                                         tp(CFrameMon)
