@@ -26,14 +26,14 @@ if KEY then
         Section:NewToggle("AutoFarm", "", function(a)
             AutoFarm["Farmlevel"] = a
         end)
-        Section:NewToggle("Bring Mob", "", function(a)
-            AutoFarm["BringMob"] = a
+        Section:NewToggle("Bring Mob", "", function(s)
+            AutoFarm["BringMob"] = s
         end)
-        Section:NewToggle("Auto World two", "", function(a)
-            AutoFarm["AutoNewWorld"] = a
+        Section:NewToggle("Auto World two", "", function(f)
+            AutoFarm["AutoNewWorld"] = f
         end)
-        Section:NewToggle("FastAttack", "", function(a)
-            AutoFarm["FastAttack"] = a
+        Section:NewToggle("FastAttack", "", function(g)
+            AutoFarm["FastAttack"] = g
         end)
         
     
@@ -675,9 +675,30 @@ if KEY then
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
                         end
                         
+                        if game:GetService("Players").LocalPlayer.Data.Level.Value >= 375 then
+                            if game:GetService("Players").LocalPlayer.Data.Level.Value <= 450 then
+                                if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value ~= "Fishman" then
+                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
+                                end
+                                if game:GetService("Players").LocalPlayer.Data.Level.Value >= 450 then
+                                    if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                        wait(10)
+                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
+                                    end
+                                end
+                            end
+                        end
+
+
+                        if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                            if game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Magnitude <= 5000 then
+                                tp(CFrame.new(4014.199462890625, -1.9869835376739502, -1824.7288818359375))
+                            end
+                        end
+
                         if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
                             Monter()
-                            
+                            wait(1)
                             tp(CFrameQuest)
                             if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
@@ -735,32 +756,6 @@ if KEY then
             wait(5)
         end
     end)
-    
-
-    spawn(function()
-        while wait() do
-            if AutoFarm["Farmlevel"] then
-                pcall(function()
-                    if game:GetService("Players").LocalPlayer.Data.Level.Value >= 375 then
-                        if game:GetService("Players").LocalPlayer.Data.Level.Value <= 450 then
-                            if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value ~= "Fishman" then
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
-                                wait(1)
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
-                            end
-                            if game:GetService("Players").LocalPlayer.Data.Level.Value >= 450 then
-                                if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                    wait(10)
-                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
-                                end
-                            end
-                        end
-                    end
-                end)
-            end
-        end
-    end)
-
 
 
 
@@ -925,8 +920,6 @@ if KEY then
         print("WRONG PASSWORD!!")
         game.Players.LocalPlayer:Kick("WRONG PASSWORD!!")
 end
-
-
 
 
 
