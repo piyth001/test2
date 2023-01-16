@@ -59,6 +59,15 @@ if KEY then
         
         end)
         
+        -- Auto Select item
+        spawn(function()
+            while wait(.5) do
+                if AutoFarm["WeaponAuto"] then
+                    game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Weapon))
+                end
+            end
+        end)
+
         
     
     
@@ -633,7 +642,7 @@ if KEY then
     
     
     function Monter()
-        game:GetService("RunService").Heartbeat:Connect(function()
+        game:GetService("RunService").Heartbeat:Connect(function() wait(.5)
             if AutoFarm["Farmlevel"] then
                 if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") then
                     setfflag("HumanoidParallelRemoveNoPhysics", "False")
@@ -657,7 +666,7 @@ if KEY then
 
             -- autoFarm
         spawn(function()
-            while task.wait() do
+            while task.wait(.1) do
                 if AutoFarm["Farmlevel"] then
                     Checklevel()
                     island()
@@ -665,28 +674,10 @@ if KEY then
                         if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
                         end
-                        if not game.Players.LocalPlayer.Character.Humanoid:FindFirstChild("RightLowerArm_BusoLayer1") then
-                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
-                        end
-
+                        
                         if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
                             Monter()
-                                if game:GetService("Players").LocalPlayer.Data.Level.Value >= 449 then
-                                    if not game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                        tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
-                                        wait(3)
-                                    end
-                                    tp(CFrame.new(4032.900146484375, 1.9618134498596191, -1809.3026123046875))
-                                    wait(2)
-                                end
-
-                                if game:GetService("Players").LocalPlayer.Data.Level.Value == 450 then
-                                    if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
-                                        wait(5)
-                                    end
-                                end
-    
+                            
                             tp(CFrameQuest)
                             if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5 then
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", NameQuest, LevelQuest)
@@ -705,8 +696,11 @@ if KEY then
             end
         end)
 
+
+
+
         spawn(function()
-            while wait() do
+            while wait(.1) do
                 if AutoFarm["BringMob"] then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         for  i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -731,24 +725,45 @@ if KEY then
             if AutoFarm["Farmlevel"] then
                 pcall(function()
                     if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                        if not game.Players.LocalPlayer.Character.Humanoid:FindFirstChild("RightLowerArm_BusoLayer1") then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+                        end
                         tp(Island * CFrame.new(0,4,0))
                     end
                 end)
             end
-            wait(10)
+            wait(5)
         end
     end)
     
 
-    
-        -- Auto Select item
-        spawn(function()
-            while wait(1) do
-                if AutoFarm["WeaponAuto"] then
-                    game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Weapon))
-                end
+    spawn(function()
+        while wait() do
+            if AutoFarm["Farmlevel"] then
+                pcall(function()
+                    if game:GetService("Players").LocalPlayer.Data.Level.Value >= 375 then
+                        if game:GetService("Players").LocalPlayer.Data.Level.Value <= 450 then
+                            if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value ~= "Fishman" then
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
+                                wait(1)
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(61163.8515625, 11.6796875, 1819.7841796875))
+                            end
+                            if game:GetService("Players").LocalPlayer.Data.Level.Value >= 450 then
+                                if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                    wait(10)
+                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
+                                end
+                            end
+                        end
+                    end
+                end)
             end
-        end)
+        end
+    end)
+
+
+
+
     
     
         -- Auto State
@@ -784,30 +799,6 @@ if KEY then
         end)
     
     
-    
-        spawn(function()
-            while wait() do
-                if AutoFarm["Farmlevel"] then
-                    pcall(function()
-                        if game:GetService("Players").LocalPlayer.Data.Level.Value == 375 then
-                            if game:GetService("Players").LocalPlayer.Data.Level.Value == 451 then
-                                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                                    wait(1)
-                                    game.Players.LocalPlayer.Character.Humanoid.Health = 0
-                                    wait(2)
-                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrameQuest
-                                    wait(2)
-                                    tp(CFrameQuest)
-                                    wait(5)
-                                end
-                            end
-                        end
-                    end)
-                end
-            end
-        end)
-    
-        
     
        
 
