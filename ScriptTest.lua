@@ -678,12 +678,18 @@ if KEY then
                 if AutoFarm["Farmlevel"] then
                     Checklevel()
                     island()
-                    pcall(function()                                     
+                    pcall(function()    
+                        if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                        end                                 
                         if game:GetService("Players").LocalPlayer.Data.Level.Value >= 375 then
-                            if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
-                                wait(5)
+                            
+                            if game:GetService("Players").LocalPlayer.Data.Level.Value <= 450 then
+                                if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Fishman" then
+                                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TeleportToSpawn")
+                                end
                             end
+
                             if game:GetService("Players").LocalPlayer.Data.Level.Value <= 449 then
                                 if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value ~= "Fishman" then
                                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(3864.6884765625, 6.736950397491455, -1926.214111328125))
@@ -697,11 +703,6 @@ if KEY then
                                 end
                             end
                         end   
-
-
-                        if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
-                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                        end
 
 
                         if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
