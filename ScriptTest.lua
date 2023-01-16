@@ -776,11 +776,9 @@ if KEY then
     
         spawn(function()
             game:GetService("RunService").RenderStepped:Connect(function()
-                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                    if AutoFarm["Farmlevel"] then
-                        game:GetService'VirtualUser':CaptureController()
-                        game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
-                    end
+                if AutoFarm["Farmlevel"] then
+                    game:GetService'VirtualUser':CaptureController()
+                    game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
                 end
             end)
         end)
