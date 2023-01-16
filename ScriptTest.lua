@@ -666,6 +666,10 @@ if KEY then
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
                         end
     
+                        if not game:GetService("Workspace").Characters.LocalPlayer.Humanoid:FindFirstChild("RightLowerArm_BusoLayer1") then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+                        end
+
                         if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
                             Monter()
                                 if game:GetService("Players").LocalPlayer.Data.Level.Value >= 449 then
@@ -694,8 +698,6 @@ if KEY then
                                 if v.Name == Ms then
                                     tp(v.HumanoidRootPart.CFrame * CFrame.new(0,24,0))
                                     v.HumanoidRootPart.CanCollide = false
-                                    v.Humanoid.WalkSpeed = 0
-                                    v.Humanoid.JumpPower = 0
                                 end
                             end
                         end
@@ -708,21 +710,20 @@ if KEY then
             while wait() do
                 if AutoFarm["BringMob"] then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                        for i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        for  i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                             if v.Name == Ms and v2.Name == Ms then
                                 v.HumanoidRootPart.CFrame = v2.HumanoidRootPart.CFrame
-                                v2.Humanoid.WalkSpeed = 0
-                                v2.Humanoid.JumpPower = 0
-                                v2.HumanoidRootPart.CanCollide = false
                                 if sethiddenproperty then
                                     sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
                                 end
                             end
                         end
-                    end
+                    end                    
                 end
             end
         end)
+
+
 
 
     -- teleport Island2
