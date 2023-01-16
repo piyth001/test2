@@ -665,8 +665,7 @@ if KEY then
                         if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
                         end
-    
-                        if not game:GetService("Workspace").Characters.LocalPlayer.Humanoid:FindFirstChild("RightLowerArm_BusoLayer1") then
+                        if not game.Players.LocalPlayer.Character.Humanoid:FindFirstChild("RightLowerArm_BusoLayer1") then
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
                         end
 
