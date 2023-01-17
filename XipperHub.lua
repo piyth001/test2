@@ -514,7 +514,7 @@ spawn(function()
                                 repeat wait()
                                     Clicking()
                                         game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new((game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude/350, Enum.EasingStyle.Linear), {CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,24,0)}):Play()
-                                until Xipper["AutoFarm"] == false or v.Humanoid.Health <= 0
+                                until Xipper["AutoFarm"] == false or v.Humanoid.Health <= 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
                             else
                                 tp(moncf)
                             end
