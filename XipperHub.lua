@@ -78,13 +78,39 @@ local dropdoxwn = Sector3:AddDropdown("Select State",Statelist,"None",false,func
 end)
 
 
-Sector3:AddToggle("Buy Item",false,function(t)
+Sector3:AddToggle("Auto State",false,function(t)
     Xipper["AutoState"] = t
  end)
+ Sector3:AddSlider("State",1,25,50,1,function(x)
+    stat = x
+ end)
+
+ spawn(function()
+    while wait() do
+        if Xipper["AutoState"] then
+            pcall(function()
+                if state == "Melee" then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Melee", stat)
+                elseif state == "Sword" then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Sword", stat)
+                elseif state == "Defense" then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Defense", stat)
+                elseif state == "Gun"then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Gun", stat)
+                elseif state == "Blox fruit"  then
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Demon Fruit", stat)
+                end
+            end)
+        end
+    end
+end)
+
+
+
 
 
  -- Buy Item
- local Sector5 = Tab:CreateSector("Item All","left")
+ local Sector5 = Tab:CreateSector("Buy Item","left")
  Itemlist = {"Geppo","Buso","Soru","Ken","Black Leg","Electro","Fishman Karate"}
  Item = nil
  
@@ -481,6 +507,8 @@ spawn(function()
                 elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         v.HumanoidRootPart.CanCollide = false
+                        v.Humanoid.WalkSpeed = 0
+                        v.Humanoid.JumpPower = 0
                         if v.Name == mon and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") then
                             if v.Humanoid.Health > 0 then
                                 repeat wait()
@@ -514,6 +542,8 @@ spawn(function()
                     for  i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if v.Name == mon and v2.Name == mon then
                             v.HumanoidRootPart.CFrame = v2.HumanoidRootPart.CFrame
+                            v.HumanoidRootPart.CanCollide = false
+                            v2.HumanoidRootPart.CanCollide = false
                             if sethiddenproperty then
                                 sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
                             end
@@ -526,25 +556,7 @@ spawn(function()
 
 
 
-    spawn(function()
-        while wait() do
-            if Xipper["AutoState"] then
-                pcall(function()
-                    if state == "Melee" then
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Melee", 3)
-                    elseif state == "Sword" then
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Sword", 3)
-                    elseif state == "Defense" then
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Defense", 3)
-                    elseif state == "Gun"then
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Gun", 3)
-                    elseif state == "Blox fruit"  then
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint", "Demon Fruit", 3)
-                    end
-                end)
-            end
-        end
-    end)
+    
 
     spawn(function()
         while wait() do
