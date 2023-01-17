@@ -561,23 +561,25 @@ spawn(function()
 
 spawn(function()
     game:GetService("RunService").Heartbeat:Connect(function() wait()
-        if Xipper["AutoFarm"] then
-            if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") then
-                setfflag("HumanoidParallelRemoveNoPhysics", "False")
-                setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-                game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
-            end
+        pcall(function()
+            if Xipper["AutoFarm"] then
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid") then
+                    setfflag("HumanoidParallelRemoveNoPhysics", "False")
+                    setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+                    game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(11)
+                end
 
-            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                if v.Name == Ms then
-                    if v:FindFirstChild("Humanoid") then
-                        setfflag("HumanoidParallelRemoveNoPhysics", "False")
-                        setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
-                        v.Humanoid:ChangeState(11)
+                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                    if v.Name == Ms then
+                        if v:FindFirstChild("Humanoid") then
+                            setfflag("HumanoidParallelRemoveNoPhysics", "False")
+                            setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+                            v.Humanoid:ChangeState(11)
+                        end
                     end
                 end
             end
-        end
+        end)
     end)
 end)
 
