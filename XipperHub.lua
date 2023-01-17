@@ -520,7 +520,7 @@ spawn(function()
                             end
                             if not string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,monname) then
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                            end 
+                            end
                         end
                     end
                 end
@@ -554,7 +554,22 @@ spawn(function()
         end
     end)
 
-
+ -- teleport Island2
+ spawn(function ()
+    while task.wait() do
+        if Xipper["AutoFarm"] then
+            pcall(function()
+                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+                    if not game.Players.LocalPlayer.Character.Humanoid:FindFirstChild("RightLowerArm_BusoLayer1") then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+                    end
+                    tp(moncf)
+                    wait(1)
+                end
+            end)
+        end
+    end
+end)
 
 
 
