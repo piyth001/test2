@@ -536,14 +536,12 @@ spawn(function()
    
 
     spawn(function()
-        while wait(.2) do
+        while wait(.1) do
             if Xipper["BringMob"] then
                 for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                     for  i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if v.Name == mon and v2.Name == mon then
                             v.HumanoidRootPart.CFrame = v2.HumanoidRootPart.CFrame
-                            v.HumanoidRootPart.CanCollide = false
-                            v2.HumanoidRootPart.CanCollide = false
                             if sethiddenproperty then
                                 sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
                             end
