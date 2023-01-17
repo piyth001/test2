@@ -536,7 +536,7 @@ spawn(function()
    
 
     spawn(function()
-        while wait(.3) do
+        while wait(.2) do
             if Xipper["BringMob"] then
                 for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                     for  i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -702,4 +702,3 @@ end
 else
     game.Players.LocalPlayer:Kick("Please Blox Fruit!!")
 end
-
