@@ -1,5 +1,15 @@
 
+
 if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then
+
+    if game.PlaceId == 2753915549 then
+        Old_World = true
+    elseif game.PlaceId == 4442272183 then
+        New_World = true
+    elseif game.PlaceId ==  7449423635 then
+        Three_World = true
+    end
+
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/naypramx/Ui__Project/Script/XeNonUi", true))()
 library:CreateWatermark("Center Hub No.1") -- Config แตกนะเดียวค่อยแก้รอเน็ตมาก่อน By MeowX#0001
