@@ -81,7 +81,7 @@ end)
 Sector3:AddToggle("Auto State",false,function(t)
     Xipper["AutoState"] = t
  end)
- Sector3:AddSlider("State",1,25,50,1,function(x)
+ Sector3:AddSlider("State",1,3,30,1,function(x)
     stat = x
  end)
 
