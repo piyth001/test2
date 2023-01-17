@@ -537,37 +537,25 @@ spawn(function()
 
     spawn(function()
         while wait(.2) do
-            if Xipper["BringMob"] then
-                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                    for  i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                        if v.Name == mon and v2.Name == mon then
-                            v.HumanoidRootPart.CFrame = v2.HumanoidRootPart.CFrame
-                            if sethiddenproperty then
-                                sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+            pcall(function()
+                if Xipper["BringMob"] then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        for  i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == mon and v2.Name == mon then
+                                v.HumanoidRootPart.CFrame = v2.HumanoidRootPart.CFrame
+                                if sethiddenproperty then
+                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                                end
                             end
                         end
-                    end
-                end                    
-            end
+                    end                    
+                end
+            end)
         end
     end)
 
 
 
-    
-
-    spawn(function()
-        while wait() do
-            if Xipper["AutoFarm"] then
-                pcall(function()
-                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                        tp(moncf)
-                        wait(1)
-                    end
-                end)
-            end
-        end
-    end)
 
 
 
