@@ -535,8 +535,11 @@ spawn(function()
     end)
    
 
+
+    -- Bring Mob
+
     spawn(function()
-        while wait(.2) do
+        while wait() do
             pcall(function()
                 if Xipper["BringMob"] then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -554,17 +557,24 @@ spawn(function()
         end
     end)
 
+    
+
  -- teleport Island2
  spawn(function ()
     while task.wait() do
         if Xipper["AutoFarm"] then
             pcall(function()
                 if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                    if not game.Players.LocalPlayer.Character.Humanoid:FindFirstChild("RightLowerArm_BusoLayer1") then
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+                    for i,v in pairs() do
+                        if not game.Players.LocalPlayer.Character.Humanoid:FindFirstChild("RightLowerArm_BusoLayer1") then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+                        end
+
+                        if not v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid")then
+                        tp(moncf)
+                        wait(1)
+                        end
                     end
-                    tp(moncf)
-                    wait(1)
                 end
             end)
         end
@@ -574,6 +584,7 @@ end)
 
 
 
+-- Mon
 spawn(function()
     game:GetService("RunService").Heartbeat:Connect(function() wait()
         pcall(function()
@@ -610,11 +621,12 @@ spawn(function() -- Fast Attack
 
         game:GetService("RunService").RenderStepped:Connect(function()
 
+            pcall(function()
+
             if Xipper["AutoFarm"] then
 
                 if typeof(y) == "table" then
 
-                    pcall(function()
 
                         CameraShaker:Stop()
 
@@ -622,11 +634,11 @@ spawn(function() -- Fast Attack
 
                         y.activeController.active = false
 
-                    end)
+                    end
 
                 end
 
-            end
+            end)
 
         end)
 
