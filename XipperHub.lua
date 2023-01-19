@@ -330,7 +330,7 @@ getgenv().Xipper = {
     ["BringMob"] = false,
     ["AutoState"] = false,
     ["AutoNewWorld"] = false,
-    ["AutoThreeSea"] = false
+    ["AutoThreeSea"] = false,
 }
 
 
@@ -708,6 +708,9 @@ spawn(function()
                                     end
                                 end
 
+                                if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(918.0350341796875, 125.05711364746094, 32905.515625).Position).Magnitude <= 200 then
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(-6508.55810546875, 89.03499603271484, -132.83953857421875))
+                                end
 
                                 -- World Secord
                                 if game:GetService("Players").LocalPlayer.Data.Level.Value >= 1250 then
