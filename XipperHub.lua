@@ -12,7 +12,6 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
 
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/naypramx/Ui__Project/Script/XeNonUi", true))()
-library:CreateWatermark("Center Hub No.1") -- Config แตกนะเดียวค่อยแก้รอเน็ตมาก่อน By MeowX#0001
 local CenterHubNo1 = library:CreateWindow("XipperX Premium",Enum.KeyCode.RightControl)
 local Tab = CenterHubNo1:CreateTab("Main")
 local Sector1 = Tab:CreateSector("Main","left")
@@ -33,12 +32,30 @@ elseif New_World then
     end)
 end
 
+
 Sector1:AddToggle("Fast Attack",false,function(t)
     Xipper["FastAttack"] = t
 end)
 Sector1:AddToggle("Bring Mob",false,function(t)
     Xipper["BringMob"] = t
 end)
+
+Sector1:AddToggle("Random Fruit",false,function(t)
+    Xipper["Random"] = t
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if Xipper["Random"] then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin", "Buy")
+            end
+        end)
+        wait(5)
+    end
+end)
+
+
 
 -- Weapon Equip
 
@@ -122,7 +139,7 @@ end)
 
  -- Buy Item
  local Sector5 = Tab:CreateSector("Buy Item","left")
- Itemlist = {"Geppo","Buso","Soru","Ken","Black Leg","Electro","Fishman Karate"}
+ Itemlist = {"Geppo","Buso","Soru","Ken","Black Leg","Electro","Fishman Karate","Dragon Claw","Superhuman"}
  Item = nil
  
  local dropdoxwn = Sector5:AddDropdown("Select Item",Itemlist,"None",false,function(t)
@@ -145,6 +162,10 @@ end)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectro")
     elseif Item == "Fishman Karate" then
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyFishmanKarate")
+    elseif Item == "Dragon Claw" then
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward", "DragonClaw", "2")
+    elseif Item == "Superhuman" then
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman")
     end
  end)
 
@@ -221,7 +242,12 @@ Sector3:AddButton("teleport",function()
         elseif island == "HotandCold"then
             tp(CFrame.new(-5898.6787109375, 18.321979522705078, -5076.54638671875))
         elseif island == "GhostShip"then
-            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(923.2125244140625, 126.97600555419922, 32852.83203125))
+            if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value == "Ship" then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(-6508.55810546875, 89.03499603271484, -132.83953857421875))
+            end
+            if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value ~= "Ship" then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(923.2125244140625, 126.97600555419922, 32852.83203125))
+            end
         elseif island == "IceCastle"then
             tp(CFrame.new(5837.99951171875, 99.01679992675781, -6505.32666015625))
         elseif island == "Frogotten"then
@@ -331,6 +357,7 @@ getgenv().Xipper = {
     ["AutoState"] = false,
     ["AutoNewWorld"] = false,
     ["AutoThreeSea"] = false,
+    ["Random"] = false
 }
 
 
@@ -531,133 +558,126 @@ function Checklevel()
             questnum = 2
             moncf = CFrame.new(-320.9317321777344, 39.119754791259766, 2403.956787109375)
             questcf = CFrame.new(-320.9317321777344, 39.119754791259766, 2403.956787109375)
-        elseif Mylevel == 775 or Mylevel <= 800  then
+        elseif Mylevel == 775 or Mylevel < 875  then
             mon = "Swan Pirate [Lv. 775]"
             monname = "Swan Pirate"
             quest = "Area2Quest"
             questnum = 1
             moncf = CFrame.new(877.4432373046875, 121.5821762084961, 1240.386474609375)
             questcf = CFrame.new(636.9064331054688, 74.0859146118164, 919.9129638671875)
-        elseif Mylevel == 800  or Mylevel <= 875 then
-            mon = "Factory Staff [Lv. 800]"
-            monname = "Factory Staff"
-            quest = "Area2Quest"
-            questnum = 2
-            moncf = CFrame.new(651.2156372070312, 92.521240234375, -4.055452346801758)
-            questcf = CFrame.new(636.9064331054688, 74.0859146118164, 919.9129638671875)
-        elseif Mylevel == 875 or Mylevel <= 900 then
+        elseif Mylevel == 875 or Mylevel < 900 then
             mon = "Marine Lieutenant [Lv. 875]"
             monname = "Marine Lieutenant"
             quest = "MarineQuest3"
             questnum = 1
             moncf = CFrame.new(-2912.118408203125, 72.96612548828125, -3069.6455078125)
             questcf = CFrame.new(-2437.52490234375, 73.0160903930664, -3215.423828125)
-        elseif Mylevel == 900 or Mylevel <= 950 then
+        elseif Mylevel == 900 or Mylevel < 950 then
             mon = "Marine Captain [Lv. 900]"
             monname = "Marine Captain"
             quest = "MarineQuest3"
             questnum = 2
             moncf = CFrame.new(-1963.403564453125, 72.96612548828125, -3342.51318359375)
             questcf = CFrame.new(-2437.52490234375, 73.0160903930664, -3215.423828125)
-        elseif Mylevel == 950 or Mylevel <= 975 then
+        elseif Mylevel == 950 or Mylevel < 975 then
             mon = "Zombie [Lv. 950]"
             monname = "Zombie"
             quest = "ZombieQuest"
             questnum = 1
             moncf = CFrame.new(-5532.61181640625, 100.67271423339844, -834.9943237304688)
             questcf = CFrame.new(-5499.12646484375, 48.48012924194336, -794.8524169921875)
-        elseif Mylevel == 975 or Mylevel <= 1000 then
+        elseif Mylevel == 975 or Mylevel < 1000 then
             mon = "Vampire [Lv. 975]"
             monname = "Vampire"
             quest = "ZombieQuest"
             questnum = 2
             moncf = CFrame.new(-6037.75537109375, 6.402712821960449, -1297.030517578125)
             questcf = CFrame.new(-5499.12646484375, 48.48012924194336, -794.8524169921875)
-        elseif Mylevel == 1000 or Mylevel <= 1050 then
+        elseif Mylevel == 1000 or Mylevel < 1050 then
             mon = "Snow Trooper [Lv. 1000]"
             monname = "Snow Trooper"
             quest = "SnowMountainQuest"
             questnum = 1
             moncf = CFrame.new(541.2474975585938, 416.843505859375, -5467.4296875)
             questcf = CFrame.new(608.587890625, 401.42193603515625, -5371.42822265625)
-        elseif Mylevel == 1050 or Mylevel <= 1100 then
+        elseif Mylevel == 1050 or Mylevel < 1100 then
             mon = "Winter Warrior [Lv. 1050]"
             monname = "Winter Warrior"
             quest = "SnowMountainQuest"
             questnum = 2
             moncf = CFrame.new(1331.6595458984375, 429.421875, -5308.58740234375)
             questcf = CFrame.new(608.587890625, 401.42193603515625, -5371.42822265625)
-        elseif Mylevel == 1100 or Mylevel <= 1125 then
+        elseif Mylevel == 1100 or Mylevel < 1125 then
             mon = "Lab Subordinate [Lv. 1100]"
             monname = "Lab Subordinate"
             quest = "IceSideQuest"
             questnum = 1
             moncf = CFrame.new(-5775.89794921875, 15.951770782470703, -4483.2861328125)
             questcf = CFrame.new(-6062.76123046875, 15.951770782470703, -4904.2783203125)
-        elseif Mylevel == 1125 or Mylevel <= 1175 then
+        elseif Mylevel == 1125 or Mylevel < 1175 then
             mon = "Horned Warrior [Lv. 1125]"
             monname = "Horned Warrior"
             quest = "IceSideQuest"
             questnum = 2
             moncf = CFrame.new(-6300.75830078125, 15.951770782470703, -5678.81005859375)
             questcf = CFrame.new(-6062.76123046875, 15.951770782470703, -4904.2783203125)
-        elseif Mylevel == 1175 or Mylevel <= 1200 then
+        elseif Mylevel == 1175 or Mylevel < 1200 then
             mon = "Magma Ninja [Lv. 1175]"
             monname = "Magma Ninja"
             quest = "FireSideQuest"
             questnum = 1
             moncf = CFrame.new(-5511.2900390625, 60.82063293457031, -5918.326171875)
             questcf = CFrame.new(-5428.92138671875, 15.951773643493652, -5298.19921875)
-        elseif Mylevel == 1200 or Mylevel <= 1250 then
+        elseif Mylevel == 1200 or Mylevel < 1250 then
             mon = "Lava Pirate [Lv. 1200]"
             monname = "Lava Pirate"
             quest = "FireSideQuest"
             questnum = 2
             moncf = CFrame.new(-5293.7734375, 50.07811737060547, -4723.9306640625)
             questcf = CFrame.new(-5428.92138671875, 15.951773643493652, -5298.19921875)
-        elseif Mylevel == 1250 or Mylevel <= 1275 then
+        elseif Mylevel == 1250 or Mylevel < 1275 then
             mon = "Ship Deckhand [Lv. 1250]"
             monname = "Ship Deckhand"
             quest = "ShipQuest1"
             questnum = 1
             moncf = CFrame.new(1188.49755859375, 125.05711364746094, 33057.87109375)
             questcf = CFrame.new(1039.4644775390625, 125.05711364746094, 32909.75)
-        elseif Mylevel == 1275 or Mylevel <= 1300 then
+        elseif Mylevel == 1275 or Mylevel < 1300 then
             mon = "Ship Engineer [Lv. 1275]"
             monname = "Ship Engineer"
             quest = "ShipQuest1"
             questnum = 2
             moncf = CFrame.new(919.1246948242188, 43.54401397705078, 32780.05859375)
             questcf = CFrame.new(1039.4644775390625, 125.05711364746094, 32909.75)
-        elseif Mylevel == 1300 or Mylevel <= 1325 then
+        elseif Mylevel == 1300 or Mylevel < 1325 then
             mon = "Ship Steward [Lv. 1300]"
             monname = "Ship Steward"
             quest = "ShipQuest2"
             questnum = 1
             moncf = CFrame.new(923.1408081054688, 129.55599975585938, 33445.21875)
             questcf = CFrame.new(970.4435424804688, 125.05711364746094, 33247.1953125)
-        elseif Mylevel == 1325 or Mylevel <= 1350 then
+        elseif Mylevel == 1325 or Mylevel < 1350 then
             mon = "Ship Officer [Lv. 1325]"
             monname = "Ship Officer"
             quest = "ShipQuest2"
             questnum = 2
             moncf = CFrame.new(952.671630859375, 181.05770874023438, 33340.57421875)
             questcf = CFrame.new(970.4435424804688, 125.05711364746094, 33247.1953125)
-        elseif Mylevel == 1350 or Mylevel <= 1375 then
+        elseif Mylevel == 1350 or Mylevel < 1375 then
             mon = "Arctic Warrior [Lv. 1350]"
             monname = "Arctic Warrior"
             quest = "FrostQuest"
             questnum = 1
             moncf = CFrame.new(5994.732421875, 57.58658981323242, -6175.443359375)
             questcf = CFrame.new(5668.21484375, 28.17673683166504, -6484.474609375)
-        elseif  Mylevel == 1375 or Mylevel <= 1425 then
+        elseif  Mylevel == 1375 or Mylevel < 1425 then
             mon = "Snow Lurker [Lv. 1375]"
             monname = "Snow Lurker"
             quest = "FrostQuest"
             questnum = 2
             moncf = CFrame.new(5422.212890625, 28.1103572845459, -6746.955078125)
             questcf = CFrame.new(5668.21484375, 28.17673683166504, -6484.474609375)
-        elseif Mylevel == 1425 or Mylevel <= 1450 then
+        elseif Mylevel == 1425 or Mylevel < 1450 then
             mon = "Sea Soldier [Lv. 1425]"
             monname = "Sea Soldier"
             quest = "ForgottenQuest"
@@ -708,9 +728,6 @@ spawn(function()
                                     end
                                 end
 
-                                if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - CFrame.new(918.0350341796875, 125.05711364746094, 32905.515625).Position).Magnitude <= 200 then
-                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(-6508.55810546875, 89.03499603271484, -132.83953857421875))
-                                end
 
                                 -- World Secord
                                 if game:GetService("Players").LocalPlayer.Data.Level.Value >= 1250 then
@@ -718,6 +735,8 @@ spawn(function()
                                         if game:GetService("Players").LocalPlayer.Data.LastSpawnPoint.Value ~= "Ship" then
                                             if game:GetService("Players").LocalPlayer.Data.Level.Value <= 1349 then
                                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(923.2125244140625, 126.97600555419922, 32852.83203125))
+                                                wait(1)
+                                                tp(CFrame.new(942.343994140625, 125.05711364746094, 32915.90234375))
                                             end
                                         end
 
@@ -739,10 +758,10 @@ spawn(function()
                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",quest,questnum)
                         end
                 elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                    if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+                    end
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                        v.HumanoidRootPart.CanCollide = false
-                        v.Humanoid.WalkSpeed = 0
-                        v.Humanoid.JumpPower = 0
                         if v.Name == mon and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") then
                             if v.Humanoid.Health > 0 then
                                 repeat wait()
@@ -773,12 +792,15 @@ spawn(function()
     -- Bring Mob
 
     spawn(function()
-        while wait(.1) do
+        while wait(.2) do
             pcall(function()
                 if Xipper["BringMob"] then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         for  i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                             if v.Name == mon and v2.Name == mon then
+                                v.HumanoidRootPart.CanCollide = false
+                                v.Humanoid.WalkSpeed = 0
+                                v.Humanoid.JumpPower = 0
                                 v.HumanoidRootPart.CFrame = v2.HumanoidRootPart.CFrame
                                 if sethiddenproperty then
                                     sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
@@ -799,9 +821,6 @@ spawn(function()
         if Xipper["AutoFarm"] then
             pcall(function()
                 if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
-                    if not game.Players.LocalPlayer.Character.Humanoid:FindFirstChild("RightLowerArm_BusoLayer1") then
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
-                    end
                     if not game:GetService("Workspace").Enemies:FindFirstChild(mon) then
                     tp(moncf)
                     wait(1)
@@ -830,7 +849,7 @@ spawn(function()
                             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                                 if v.Name == "Ice Admiral [Lv. 700] [Boss]" then
                                     if v:FindFirstChild("Humanoid") then
-                                        if not game.Players.LocalPlayer.Character.Humanoid:FindFirstChild("RightLowerArm_BusoLayer1") then
+                                        if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
                                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
                                         end
                                         Clicking()
@@ -953,15 +972,13 @@ spawn(function() -- Fast Attack
 
                         CameraShaker:Stop()
 
-                        y.activeController.timeToNextAttack = (math.huge^math.huge^math.huge)
-
-                        y.activeController.timeToNextAttack = 0
+                        y.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
 
                         y.activeController.hitboxMagnitude = 60
 
                         y.activeController.active = false
 
-                        y.activeController.timeToNextBlock = 0
+                        y.activeController.timeToNextBlock = -(math.huge^math.huge^math.huge)
 
                         y.activeController.focusStart = 1655503339.0980349
 
