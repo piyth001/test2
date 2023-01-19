@@ -558,12 +558,19 @@ function Checklevel()
             questnum = 2
             moncf = CFrame.new(-320.9317321777344, 39.119754791259766, 2403.956787109375)
             questcf = CFrame.new(-320.9317321777344, 39.119754791259766, 2403.956787109375)
-        elseif Mylevel == 775 or Mylevel < 875  then
+        elseif Mylevel == 775 or Mylevel < 800  then
             mon = "Swan Pirate [Lv. 775]"
             monname = "Swan Pirate"
             quest = "Area2Quest"
             questnum = 1
             moncf = CFrame.new(877.4432373046875, 121.5821762084961, 1240.386474609375)
+            questcf = CFrame.new(636.9064331054688, 74.0859146118164, 919.9129638671875)
+        elseif Mylevel == 800 or Mylevel < 875 then
+            mon = "Factory Staff [Lv. 800]"
+            monname = "Factory Staff"
+            quest = "Area2Quest"
+            questnum = 2
+            moncf = CFrame.new()
             questcf = CFrame.new(636.9064331054688, 74.0859146118164, 919.9129638671875)
         elseif Mylevel == 875 or Mylevel < 900 then
             mon = "Marine Lieutenant [Lv. 875]"
